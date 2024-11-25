@@ -13,15 +13,19 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id('patient_id');
+            $table->foreignId('user_id');
             $table->string('patient_fio', 64);
-            $table->date('dob');
+            $table->date('patient_dob');
             $table->string('patient_phone', 16);
             $table->string('patient_email', 50);
-            $table->string('vk', 100);
-            $table->string('telegram', 100);
-            $table->string('viber', 100);
-            $table->string('whatsapp', 100);
-            $table->text('anamnesis');
+            $table->string('patient_vk', 100)->nullable();
+            $table->string('patient_telegram', 100)->nullable();
+            $table->string('patient_viber', 100)->nullable();
+            $table->string('patient_whatsapp', 100)->nullable();
+            $table->string('patient_skype', 100)->nullable();
+            $table->string('patient_zoom', 100)->nullable();
+            $table->string('patient_discord', 100)->nullable();
+            $table->string('patient_teamspeak', 100)->nullable();
             $table->timestamps();
         });
     }
