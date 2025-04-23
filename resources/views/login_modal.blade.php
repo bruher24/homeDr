@@ -8,14 +8,21 @@
             </div>
 
             <div class="modal-body p-5 pt-0">
-                <form class="">
+                <form class="" method="post" action="{{url('auth')}}">
+                    @csrf
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
+                        <input type="email" class="form-control rounded-3" name="email" id="floatingInput" placeholder="name@example.com">
                         <label for="floatingInput">Email</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
+                        <input type="password" class="form-control rounded-3" name="password" id="floatingPassword" placeholder="Password">
                         <label for="floatingPassword">Пароль</label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="1" name="remember" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Запомнить меня
+                        </label>
                     </div>
                     <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Войти</button>
                     <hr class="my-4">

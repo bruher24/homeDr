@@ -22,7 +22,7 @@
                         </ul>
                     </div>
                 </li>
-                <li><a href="#" class="nav-link px-2 text-white">Цены и услуги</a></li>
+                <li><a href="{{url('services')}}" class="nav-link px-2 text-white">Цены и услуги</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">Контакты</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">О нас</a></li>
             </ul>
@@ -30,10 +30,26 @@
                 <input type="search" class="form-control form-control-dark text-bg-white" placeholder="Поиск..."
                        aria-label="Search">
             </form>
-            <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#modalLogin">Войти</button>
-                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalSignin">Регистрация</button>
-            </div>
+            @guest
+                <div class="text-end">
+                    <button type="button" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#modalLogin">Войти</button>
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalSignin">Регистрация</button>
+                </div>
+            @endguest
+            @auth
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="mdo" width="40" height="40" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+                        <li><a class="dropdown-item" href="#">Мои пациенты (?)</a></li>
+                        <li><a class="dropdown-item" href="#">Личный кабинет</a></li>
+                        <li><a class="dropdown-item" href="#">Настройки</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{url('logout')}}">Выйти</a></li>
+                    </ul>
+                </div>
+            @endauth
         </div>
     </div>
 </header>

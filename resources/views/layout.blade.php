@@ -22,10 +22,11 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
     </head>
     <body class="font-sans antialiased">
-    @include('register_modal')
-    @include('login_modal')
+        @include('alert')
+        @include('register_modal')
+        @include('login_modal')
         @include('header')
-        <main class="container">
+        <main>
             @yield('main')
         </main>
         @include('footer')
