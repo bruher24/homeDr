@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('abandoned_profiles', function (Blueprint $table) {
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->dateTime('deletion_date');
             $table->unsignedTinyInteger('notifications');
             $table->timestamps();

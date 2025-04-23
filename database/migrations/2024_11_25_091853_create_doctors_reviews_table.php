@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('doctors_reviews', function (Blueprint $table) {
-            $table->foreignId('doctor_id');
-            $table->foreignId('patient_id');
+            $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade')->onUpdate('cascade');
             $table->dateTime('review_dt');
             $table->text('review_text');
             $table->unsignedTinyInteger('stars');

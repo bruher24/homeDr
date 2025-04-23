@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('patients_diagnoses', function (Blueprint $table) {
-            $table->foreignId('patient_id');
-            $table->foreignId('diagnosis_id');
+            $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('diagnosis_id')->constrained('diagnoses')->onDelete('cascade')->onUpdate('cascade');
             $table->date('diagnosis_date');
             $table->boolean('actuality');
             $table->timestamps();
