@@ -11,16 +11,16 @@ class DiagnosisSeeder extends Seeder
     {
         $diagnoses = [
             [
-                'diagnosis_name' => 'Test name 1',
-                'diagnosis_desc' => 'Test desc 1',
+                'name' => 'Test name 1',
+                'desc' => 'Test desc 1',
             ],
             [
-                'diagnosis_name' => 'Test name 1',
-                'diagnosis_desc' => 'Test desc 1',
+                'name' => 'Test name 1',
+                'desc' => 'Test desc 1',
             ],
             [
-                'diagnosis_name' => 'Test name 1',
-                'diagnosis_desc' => 'Test desc 1',
+                'name' => 'Test name 1',
+                'desc' => 'Test desc 1',
             ],
         ];
         collect($diagnoses)->each(function ($diagnosis) {

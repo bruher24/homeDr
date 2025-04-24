@@ -10,9 +10,18 @@ class ConditionSeeder extends Seeder
     public function run(): void
     {
         $conditions = [
-            ['condition_text' => 'Test condition 1'],
-            ['condition_text' => 'Test condition 2'],
-            ['condition_text' => 'Test condition 3'],
+            [
+                'name' => 'Test name 1',
+                'desc' => 'Test desc 1',
+            ],
+            [
+                'name' => 'Test name 1',
+                'desc' => 'Test desc 1',
+            ],
+            [
+                'name' => 'Test name 1',
+                'desc' => 'Test desc 1',
+            ],
         ];
         collect($conditions)->each(function ($condition) {
             Condition::create($condition);

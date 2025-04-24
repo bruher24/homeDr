@@ -10,9 +10,18 @@ class SpecialitySeeder extends Seeder
     public function run(): void
     {
         $specialities = [
-            ['speciality_name' => 'Test speciality 1'],
-            ['speciality_name' => 'Test speciality 2'],
-            ['speciality_name' => 'Test speciality 3'],
+            [
+                'name' => 'Test name 1',
+                'desc' => 'Test desc 1',
+            ],
+            [
+                'name' => 'Test name 1',
+                'desc' => 'Test desc 1',
+            ],
+            [
+                'name' => 'Test name 1',
+                'desc' => 'Test desc 1',
+            ],
         ];
         collect($specialities)->each(function ($speciality) {
             Speciality::create($speciality);

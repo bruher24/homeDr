@@ -10,9 +10,18 @@ class ServiceSeeder extends Seeder
     public function run(): void
     {
         $services = [
-            ['service_type' => 'Test service 1'],
-            ['service_type' => 'Test service 2'],
-            ['service_type' => 'Test service 3'],
+            [
+                'name' => 'Test name 1',
+                'desc' => 'Test desc 1',
+            ],
+            [
+                'name' => 'Test name 1',
+                'desc' => 'Test desc 1',
+            ],
+            [
+                'name' => 'Test name 1',
+                'desc' => 'Test desc 1',
+            ],
         ];
         collect($services)->each(function ($service) {
             Service::create($service);

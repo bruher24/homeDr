@@ -12,20 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('doctors', function (Blueprint $table) {
-            $table->id('doctor_id');
+            $table->id('doctor_id')->primary();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('doctor_fio', 64);
-            $table->date('doctor_dob');
-            $table->string('doctor_phone', 16);
-            $table->string('doctor_email', 50);
-            $table->string('doctor_vk', 100)->nullable();
-            $table->string('doctor_telegram', 100)->nullable();
-            $table->string('doctor_viber', 100)->nullable();
-            $table->string('doctor_whatsapp', 100)->nullable();
-            $table->string('doctor_skype', 100)->nullable();
-            $table->string('doctor_zoom', 100)->nullable();
-            $table->string('doctor_discord', 100)->nullable();
-            $table->string('doctor_teamspeak', 100)->nullable();
+            $table->string('fio', 64);
+            $table->date('dob');
+            $table->string('phone', 16);
+            $table->string('email', 50);
+            $table->string('vk', 100)->nullable();
+            $table->string('telegram', 100)->nullable();
+            $table->string('viber', 100)->nullable();
+            $table->string('whatsapp', 100)->nullable();
+            $table->string('skype', 100)->nullable();
+            $table->string('zoom', 100)->nullable();
+            $table->string('discord', 100)->nullable();
+            $table->string('teamspeak', 100)->nullable();
             $table->timestamps();
         });
     }

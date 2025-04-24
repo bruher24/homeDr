@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('services', function (Blueprint $table) {
-            $table->id('service_id');
-            $table->string('service_type', 30);
+            $table->id('service_id')->primary();
+            $table->string('name', 30);
+            $table->text('desc');
         });
     }
 

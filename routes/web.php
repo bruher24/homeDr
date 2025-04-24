@@ -12,7 +12,10 @@ Route::get('test', function () {
 });
 Route::post('register', [UserController::class,'register']);
 Route::post('auth', [UserController::class,'auth']);
-Route::get('logout', [UserController::class,'logout']);
-Route::get('profile', [UserController::class,'profile']);
 Route::get('services', [ServicesController::class,'getServices']);
+
+Route::middleware([CheckAuth::class])->group(function () {
+    Route::get('logout', [UserController::class,'logout']);
+    Route::get('profile', [UserController::class,'profile']);
+});
 //Route::match('get, post', 'testTTT', [UserController::class,'auth']);

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             SkillSeeder::class,
             SpecialitySeeder::class,
             AdminSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

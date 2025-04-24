@@ -10,9 +10,18 @@ class SkillSeeder extends Seeder
     public function run(): void
     {
         $skills = [
-            ['skill_name' => 'Test skill 1'],
-            ['skill_name' => 'Test skill 2'],
-            ['skill_name' => 'Test skill 3'],
+            [
+                'name' => 'Test name 1',
+                'desc' => 'Test desc 1',
+            ],
+            [
+                'name' => 'Test name 1',
+                'desc' => 'Test desc 1',
+            ],
+            [
+                'name' => 'Test name 1',
+                'desc' => 'Test desc 1',
+            ],
         ];
         collect($skills)->each(function ($skill) {
             Skill::create($skill);

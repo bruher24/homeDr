@@ -6,6 +6,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
@@ -62,9 +64,11 @@ class UserController extends Controller
         return redirect('/')->with('success', 'Вы успешно вышли из аккаунта.');
     }
 
-    public function profile(Request $request)
+    public function profile(Request $request): View
     {
-        // TODO: расписание, записи, личные заметки или что-то такое
-        return view('profile', ['user' => Auth::user()]);
+        $user = Auth::user();
+        $bio = DB::table('users_bio')->where('user_id', '=', Auth::id())->first();
+        $phone = DB::table('users_phones')->where('user_id', '=', Auth::id())->first();
+        return view('profile.personal', ['user' => $user, 'bio' => $bio->bio_text, 'phone' => $phone->phone]);
     }
 }

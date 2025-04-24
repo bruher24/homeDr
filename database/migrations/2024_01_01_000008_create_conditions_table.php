@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('conditions', function (Blueprint $table) {
-            $table->id('condition_id');
-            $table->string('condition_text', 30);
+            $table->id('condition_id')->primary();
+            $table->string('name', 30);
+            $table->text('desc');
         });
     }
 

@@ -7,7 +7,7 @@
                 </svg>
             </a>
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 text-secondary">Главная</a></li>
+                <li><a href="{{url('/')}}" class="nav-link px-2 text-secondary">Главная</a></li>
                 <li>
                     <div class="dropdown">
                         <a class="nav-link px-2 text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -43,7 +43,7 @@
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
                         <li><a class="dropdown-item" href="#">Мои пациенты (?)</a></li>
-                        <li><a class="dropdown-item" href="#">Личный кабинет</a></li>
+                        <li><a class="dropdown-item" href="{{url('profile')}}">Личный кабинет</a></li>
                         <li><a class="dropdown-item" href="#">Настройки</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="{{url('logout')}}">Выйти</a></li>
