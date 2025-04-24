@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('doctors_self_conditions', function (Blueprint $table) {
-            $table->foreignId('doctor_id');
+            $table->foreignId('doctor_id')->constrained('doctors', 'doctor_id')->onDelete('cascade')->onUpdate('cascade');
             $table->text('condition_text');
             $table->timestamps();
         });

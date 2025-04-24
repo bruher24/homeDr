@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('schedule', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('doctor_id');
-            $table->unsignedBigInteger('patient_id');
-            $table->string('method', 8);
+            $table->foreignId('doctor_id')->constrained('doctors', 'doctor_id')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('patient_id')->constrained('patients', 'patient_id')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('service_id')->constrained('services', 'service_id')->onDelete('cascade')->onUpdate('cascade');
             $table->dateTime('datetime');
             $table->time('duration');
             $table->timestamps();

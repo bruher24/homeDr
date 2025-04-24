@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('competences', function (Blueprint $table) {
-            $table->id('competence_id');
-            $table->string('competence_name', 30);
-            $table->timestamps();
+        Schema::create('conditions', function (Blueprint $table) {
+            $table->id('condition_id');
+            $table->string('condition_text', 30);
         });
     }
 
@@ -23,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('competences');
+        Schema::dropIfExists('conditions');
     }
 };
