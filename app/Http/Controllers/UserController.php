@@ -64,11 +64,16 @@ class UserController extends Controller
         return redirect('/')->with('success', 'Вы успешно вышли из аккаунта.');
     }
 
-    public function profile(Request $request): View
+    public function profile(Request $request, string $section = 'personal'): View
     {
+        $allowed = ['personal', 'type', 'settings'];
+        if (!in_array($section, $allowed)) {
+            $section = 'personal';
+        }
         $user = Auth::user();
         $bio = DB::table('users_bio')->where('user_id', '=', Auth::id())->first();
         $phone = DB::table('users_phones')->where('user_id', '=', Auth::id())->first();
-        return view('profile.personal', ['user' => $user, 'bio' => $bio->bio_text, 'phone' => $phone->phone]);
+        $settings = DB::table('users_settings')->where('user_id', '=', Auth::id())->get();
+        return view('profile.' . $section, ['user' => $user, 'bio' => $bio->bio_text, 'phone' => $phone->phone, 'settings' => $settings, 'section' => $section]);
     }
 }

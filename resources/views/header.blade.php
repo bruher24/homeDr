@@ -12,7 +12,7 @@
                     <div class="dropdown">
                         <a class="nav-link px-2 text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Категории
+                            Действия
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -43,7 +43,7 @@
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
                         <li><a class="dropdown-item" href="#">Мои пациенты (?)</a></li>
-                        <li><a class="dropdown-item" href="{{url('profile')}}">Личный кабинет</a></li>
+                        <li><a class="dropdown-item" href="{{url('profile/personal')}}">Личный кабинет</a></li>
                         <li><a class="dropdown-item" href="#">Настройки</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="{{url('logout')}}">Выйти</a></li>

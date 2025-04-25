@@ -1,0 +1,44 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const doctorCheckbox = document.getElementById('doctor_check');
+    const doctorFieldsContainer = document.createElement('div');
+    doctorFieldsContainer.id = 'doctor-fields-container';
+    doctorFieldsContainer.className = 'mt-4';
+    doctorFieldsContainer.innerHTML = `
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="specialty" class="form-label">Специальность</label>
+                    <input type="text" class="form-control" id="specialty" name="specialty" placeholder="Введите вашу специальность">
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 ">
+            <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="experience" class="form-label">Стаж (лет)</label>
+                        <input type="number" class="form-control" id="experience" name="experience" placeholder="Укажите ваш стаж" min="0">
+                    </div>
+            </div>
+        </div>
+    `;
+
+    // Вставляем контейнер с полями после блока с чекбоксом
+    doctorCheckbox.closest('.settings-card').parentElement.insertAdjacentElement('afterend', doctorFieldsContainer);
+
+    // Инициализируем видимость полей в соответствии с состоянием чекбокса
+    toggleDoctorFields();
+
+    // Обработчик изменения состояния чекбокса
+    doctorCheckbox.addEventListener('change', toggleDoctorFields);
+
+    function toggleDoctorFields() {
+        if (doctorCheckbox.checked) {
+            doctorFieldsContainer.style.display = 'block';
+        } else {
+            doctorFieldsContainer.style.display = 'none';
+            // Очищаем поля при скрытии (опционально)
+            document.getElementById('specialty').value = '';
+            document.getElementById('experience').value = '';
+        }
+    }
+});
