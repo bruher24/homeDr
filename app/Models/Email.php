@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Email extends Model
 {
-    protected $fillable = ['email_id', 'email'];
-    protected $primaryKey = 'email_id';
+    protected $fillable = ['email'];
     public $timestamps = false;
 }

@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bio extends Model
 {
-    protected $fillable = ['bio_id', 'user_id', 'text'];
-    protected $primaryKey = 'bio_id';
+    protected $fillable = ['user_id', 'text'];
     public $timestamps = true;
 
     public function user()

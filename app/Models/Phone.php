@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Phone extends Model
 {
-    protected $fillable = ['phone_id', 'user_id', 'number'];
-    protected $primaryKey = 'phone_id';
+    protected $fillable = ['user_id', 'number'];
     public $timestamps = false;
 
     public function user()

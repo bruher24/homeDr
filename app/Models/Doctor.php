@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Doctor extends Model
 {
     protected $guarded = [];
-    protected $primaryKey = 'doctor_id';
     public $timestamps = true;
 
     public function user()
