@@ -12,12 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('doctors', function (Blueprint $table) {
-            $table->id('doctor_id')->primary();
+            $table->id()->primary();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('fio', 64);
+            $table->unsignedInteger('stage');
             $table->date('dob');
-            $table->string('phone', 16);
+            // TODO: вынести в отдельную модель Email
             $table->string('email', 50);
+            // TODO: вынести в отдельную модель Messenger
             $table->string('vk', 100)->nullable();
             $table->string('telegram', 100)->nullable();
             $table->string('viber', 100)->nullable();

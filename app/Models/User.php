@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Setting::class, 'users_settings', 'user_id', 'setting_id');
     }
+
+    public function doctor()
+    {
+        return $this->hasOne(Doctor::class);
+    }
 }

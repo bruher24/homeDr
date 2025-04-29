@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users_settings', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('setting_id')->constrained('settings', 'setting_id')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('setting_id')->constrained('settings')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

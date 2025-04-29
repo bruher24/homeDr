@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Speciality;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -73,6 +74,7 @@ class UserController extends Controller
         }
         $userId = Auth::id();
         $user = User::with(['roles', 'bio', 'phones', 'settings'])->find($userId);
+        $user->load('doctor') ?? $user->load('patient');
 
 //        $settings = DB::table('users_settings')->where('user_id', '=', $user->id)->get();
         return view('profile.' . $section,
@@ -82,7 +84,8 @@ class UserController extends Controller
                 'bio' => $user->bio->text,
                 'phone' => $user->phones->first()->number,
                 'settings' => $user->settings,
-                'section' => $section
+                'section' => $section,
+                'specialities' => Speciality::all(),
             ]);
     }
 }
