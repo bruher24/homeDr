@@ -14,3 +14,6 @@ fill:
 
 stop:
 	docker compose down
+
+bash:
+	docker compose exec -it app bash

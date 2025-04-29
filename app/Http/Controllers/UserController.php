@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use function Laravel\Prompts\table;
 
 class UserController extends Controller
 {
@@ -70,10 +71,18 @@ class UserController extends Controller
         if (!in_array($section, $allowed)) {
             $section = 'personal';
         }
-        $user = Auth::user();
-        $bio = DB::table('users_bio')->where('user_id', '=', Auth::id())->first();
-        $phone = DB::table('users_phones')->where('user_id', '=', Auth::id())->first();
-        $settings = DB::table('users_settings')->where('user_id', '=', Auth::id())->get();
-        return view('profile.' . $section, ['user' => $user, 'bio' => $bio->bio_text, 'phone' => $phone->phone, 'settings' => $settings, 'section' => $section]);
+        $userId = Auth::id();
+        $user = User::with(['roles', 'bio', 'phones', 'settings'])->find($userId);
+
+//        $settings = DB::table('users_settings')->where('user_id', '=', $user->id)->get();
+        return view('profile.' . $section,
+            [
+                'user' => $user,
+                'role' => $user->roles->first()->name,
+                'bio' => $user->bio->text,
+                'phone' => $user->phones->first()->number,
+                'settings' => $user->settings,
+                'section' => $section
+            ]);
     }
 }

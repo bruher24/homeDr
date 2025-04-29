@@ -12,15 +12,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            RoleSeeder::class,
+            AdminSeeder::class,
+            UserSeeder::class,
             CompetenceSeeder::class,
             ConditionSeeder::class,
             DiagnosisSeeder::class,
-            RoleSeeder::class,
             ServiceSeeder::class,
             SkillSeeder::class,
             SpecialitySeeder::class,
-            AdminSeeder::class,
-            UserSeeder::class,
+            BioSeeder::class,
         ]);
     }
 }

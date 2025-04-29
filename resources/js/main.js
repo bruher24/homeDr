@@ -8,7 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="specialty" class="form-label">Специальность</label>
-                    <input type="text" class="form-control" id="specialty" name="specialty" placeholder="Введите вашу специальность">
+<!--                    <input type="text" class="form-control" id="specialty" name="specialty" placeholder="Введите вашу специальность">-->
+                    <select type="text" class="form-control" id="specialty" name="specialty">
+                        <option selected>
+                            Выберите вашу специальность...
+                        </option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -23,13 +28,17 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
 
     // Вставляем контейнер с полями после блока с чекбоксом
-    doctorCheckbox.closest('.settings-card').parentElement.insertAdjacentElement('afterend', doctorFieldsContainer);
+    // doctorCheckbox.closest('.settings-card').parentElement.insertAdjacentElement('afterend', doctorFieldsContainer);
 
     // Инициализируем видимость полей в соответствии с состоянием чекбокса
-    toggleDoctorFields();
+    // toggleDoctorFields();
 
     // Обработчик изменения состояния чекбокса
-    doctorCheckbox.addEventListener('change', toggleDoctorFields);
+    // doctorCheckbox.addEventListener('change', toggleDoctorFields);
+    doctorCheckbox.addEventListener('change', (e)=>{
+        e.preventDefault();
+        window.location.reload();
+    });
 
     function toggleDoctorFields() {
         if (doctorCheckbox.checked) {

@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users_bio', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->text('bio_text')->nullable();
-            $table->timestamps();
+        Schema::create('settings', function (Blueprint $table) {
+            $table->id('setting_id');
+            $table->string('name');
         });
     }
 
@@ -23,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users_bio');
+        Schema::dropIfExists('settings');
     }
 };

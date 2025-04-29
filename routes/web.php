@@ -16,5 +16,10 @@ Route::get('services', [ServicesController::class,'getServices'])->name('service
 Route::middleware([CheckAuth::class])->group(function () {
     Route::get('logout', [UserController::class,'logout'])->name('logout');
     Route::get('profile/{section?}', [UserController::class,'profile'])->name('profile');
+
+    Route::prefix('user')->group(function () {
+        Route::get('switch_type', [UserController::class,'switch_type'])->name('switch_type');
+    });
 });
+
 //Route::match('get, post', 'testTTT', [UserController::class,'auth']);

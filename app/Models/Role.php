@@ -9,4 +9,9 @@ class Role extends Model
     protected $fillable = ['role_id', 'role'];
     protected $primaryKey = 'role_id';
     public $timestamps = false;
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
