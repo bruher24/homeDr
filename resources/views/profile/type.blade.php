@@ -46,7 +46,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="experience" class="form-label">Стаж (лет)</label>
-                            <input type="number" class="form-control" id="experience" name="experience" placeholder="Укажите ваш стаж" min="0">
+                            <input type="number" class="form-control" id="experience" name="experience" value="{{ $user->doctor->stage }}" placeholder="Укажите ваш стаж" min="0">
                         </div>
                     </div>
                 </div>
