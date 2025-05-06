@@ -1,2 +1,2 @@
 # homeDr
-web-app for doctors who see outside clinics
+Web-app for doctors who see outside clinics

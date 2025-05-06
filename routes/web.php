@@ -5,9 +5,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckAuth;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [UserController::class, 'index'])->name('home');
 
 Route::post('register', [UserController::class,'register'])->name('register');
 Route::post('auth', [UserController::class,'auth'])->name('auth');

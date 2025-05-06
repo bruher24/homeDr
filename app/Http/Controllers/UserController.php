@@ -9,13 +9,17 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
-use function Laravel\Prompts\table;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        return 'hello';
+        if (Auth::check()) {
+            $userId = Auth::id();
+            $user = User::with(['roles', 'photo'])->find($userId);
+            return view('welcome', ['user' => $user, 'role' => $user->roles->first()->name]);
+        }
+        return view('welcome', ['role' => 'guest']);
     }
 
     public function register(Request $request): RedirectResponse
@@ -30,9 +34,14 @@ class UserController extends Controller
         $user = new User();
         $user->fill($input);
         $user->save();
+        $user->refresh();
+        DB::table('users_roles')->insert([
+            'user_id' => $user->id,
+            'role_id' => 3,
+        ]);
         if (Auth::attempt($validated, $remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('/')->with('success', 'Вы успешо зарегистрировались!');
+            return redirect()->intended()->with('success', 'Вы успешо зарегистрировались!');
         }
         return back()->withErrors([
             'email' => 'Error.',
