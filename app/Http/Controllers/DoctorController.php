@@ -11,6 +11,6 @@ class DoctorController extends Controller
     public function list(): View
     {
         $doctors = Doctor::all();
-        return view('doctors.list', compact('doctors'));
+        return view('doctors.list', ['doctors' => $doctors, 'role' => 'doctor']);
     }
 }

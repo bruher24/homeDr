@@ -4,9 +4,9 @@
 @endsection
 @section('main')
     @guest
-        @include('guestHome')
+        @include('home.guestHome')
     @endguest
     @auth
-        @include('authHome')
+        @include('home.authHome')
     @endauth
 @endsection
