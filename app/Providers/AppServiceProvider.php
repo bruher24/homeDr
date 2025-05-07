@@ -23,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::define('is-doctor', function (User $user) {
+            // TODO: check role
+           return $user->id == 1;
+        });
+
         Gate::define('switch_type', function (User $user, int $id) {
             if ($user->id == $id) {
                 return true;

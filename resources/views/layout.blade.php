@@ -30,10 +30,10 @@
 @include('utils.alert')
 @include('modals.register')
 @include('modals.login')
-@include('header.index')
+@include('header')
 <main>
     @yield('main')
 </main>
-@include('footer.index')
+@include('footer')
 </body>
 </html>
