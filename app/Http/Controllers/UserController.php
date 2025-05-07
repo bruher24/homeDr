@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Speciality;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -75,7 +76,7 @@ class UserController extends Controller
         return redirect('/')->with('success', 'Вы успешно вышли из аккаунта.');
     }
 
-    public function profile(Request $request, string $section = 'personal'): View
+    public function profile(string $section = 'personal'): View
     {
         $allowed = ['personal', 'type', 'settings'];
         if (!in_array($section, $allowed)) {
@@ -96,5 +97,13 @@ class UserController extends Controller
                 'section' => $section,
                 'specialities' => Speciality::all(),
             ]);
+    }
+
+    public function switchType(int $id): RedirectResponse {
+        if (!Gate::allows('switch_type', $id)) {
+            abort(403);
+        }
+        $user = User::find($id);
+        $user->switchType();
     }
 }

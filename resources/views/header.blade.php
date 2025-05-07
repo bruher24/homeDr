@@ -4,39 +4,17 @@
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                 <img src="#" alt="LOGO">
             </a>
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="{{url('/')}}" class="nav-link px-2 text-secondary">Главная</a></li>
-{{--                <li>--}}
-{{--                    <div class="dropdown">--}}
-{{--                        <a class="nav-link px-2 text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink"--}}
-{{--                           data-bs-toggle="dropdown" aria-expanded="false">--}}
-{{--                            Действия--}}
-{{--                        </a>--}}
-
-{{--                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">--}}
-{{--                            <li><a class="dropdown-item" href="#">Запись на прием</a></li>--}}
-{{--                            <li><a class="dropdown-item" href="#">Вопросы</a></li>--}}
-{{--                            <li><a class="dropdown-item" href="#">Отзывы</a></li>--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
-                <li><a href="{{url('appointment')}}" class="nav-link px-2 text-white">Запись на прием</a></li>
-                <li><a href="{{url('services')}}" class="nav-link px-2 text-white">Цены и услуги</a></li>
-                <li><a href="{{ url('doctors/list') }}" class="nav-link px-2 text-white">Специалисты</a></li>
-                    @switch($role)
-                        @case('doctor')
-                            <li><a href="{{ url('doctors/12345/patients') }}" class="nav-link px-2 text-white">Мои пациенты</a></li>
-                            @break
-                        @case('patient')
-                            <li><a href="{{ url('doctors/list') }}" class="nav-link px-2 text-white">Мои врачи</a></li>
-                            @break
-                        @case('admin')
-                            <li><a href="{{ url('admin') }}" class="nav-link px-2 text-white">Администрирование</a></li>
-                            @break
-                   @endswitch
-
-                <li><a href="#" class="nav-link px-2 text-white">О нас</a></li>
-            </ul>
+            @switch($role)
+                @case('doctor')
+                    @include('doctorNav')
+                    @break
+                @case('patient')
+                    @include('patientNav')
+                    @break
+                @case('admin')
+                    @include('adminNav')
+                    @break
+            @endswitch
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
                 <input type="search" class="form-control form-control-dark text-bg-white" placeholder="Поиск..."
                        aria-label="Search">

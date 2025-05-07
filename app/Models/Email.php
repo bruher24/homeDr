@@ -8,4 +8,14 @@ class Email extends Model
 {
     protected $fillable = ['email'];
     public $timestamps = false;
+
+    public function doctor()
+    {
+        return $this->hasOne(Doctor::class);
+    }
+
+    public function patient()
+    {
+        return $this->hasOne(Patient::class);
+    }
 }

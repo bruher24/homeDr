@@ -16,7 +16,7 @@ Route::middleware([CheckAuth::class])->group(function () {
     Route::get('profile/{section?}', [UserController::class,'profile'])->name('profile');
 
     Route::prefix('user')->group(function () {
-        Route::get('switch_type', [UserController::class,'switch_type'])->name('switch_type');
+        Route::get('{id}/switch_type', [UserController::class,'switchType'])->name('switch_type');
     });
 });
 
