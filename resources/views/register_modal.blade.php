@@ -7,7 +7,7 @@
             </div>
 
             <div class="modal-body p-5 pt-0">
-                <form class="" method="post" action="{{url('register')}}">
+                <form class="" method="post" action="{{ route('users.register') }}">
                     @csrf
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control rounded-3" name="name" id="floatingInput" placeholder="Name">

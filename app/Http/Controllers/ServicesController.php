@@ -8,7 +8,7 @@ use Illuminate\View\View;
 
 class ServicesController extends Controller
 {
-    public function getServices(Request $request): View
+    public function list(): View
     {
         $services = Service::all();
         return view('services', ['services' => $services]);

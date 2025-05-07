@@ -32,10 +32,10 @@
                         <img src="{{ $user->photo->src ?? 'storage/avatar.png'}}" alt="Avatar" width="40" height="40" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
-                        <li><a class="dropdown-item" href="{{url('profile/personal')}}">Личный кабинет</a></li>
-                        <li><a class="dropdown-item" href="{{ url('profile/settings') }}">Настройки</a></li>
+                        <li><a class="dropdown-item" href="{{route('users.profile', ['section' => 'personal'])}}">Личный кабинет</a></li>
+                        <li><a class="dropdown-item" href="{{ route('users.profile', ['section' => 'settings']) }}">Настройки</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{{url('logout')}}">Выйти</a></li>
+                        <li><a class="dropdown-item" href="{{ route('users.logout') }}">Выйти</a></li>
                     </ul>
                 </div>
             @endauth

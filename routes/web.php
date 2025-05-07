@@ -1,23 +1,37 @@
 <?php
 
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CheckAuth;
 
-Route::get('/', [UserController::class, 'index'])->name('home');
+Route::get('/', [MainController::class, 'index'])->name('home');
 
-Route::post('register', [UserController::class,'register'])->name('register');
-Route::post('auth', [UserController::class,'auth'])->name('auth');
-Route::get('services', [ServicesController::class,'getServices'])->name('services');
+Route::get('about', [MainController::class, 'about'])->name('about');
+
+Route::get('services', [ServicesController::class,'list'])->name('services.list');
 
 Route::middleware([CheckAuth::class])->group(function () {
-    Route::get('logout', [UserController::class,'logout'])->name('logout');
-    Route::get('profile/{section?}', [UserController::class,'profile'])->name('profile');
+    Route::prefix('users')->group(function () {
+        Route::post('register', [UserController::class,'register'])->name('users.register')->withoutMiddleware([CheckAuth ::class]);
+        Route::post('auth', [UserController::class,'auth'])->name('users.auth')->withoutMiddleware([CheckAuth ::class]);
+        Route::get('logout', [UserController::class,'logout'])->name('users.logout');
+        Route::get('profile/{section?}', [UserController::class,'profile'])->name('users.profile');
+    });
 
-    Route::prefix('user')->group(function () {
-        Route::get('{id}/switch_type', [UserController::class,'switchType'])->name('switch_type');
+    Route::prefix('doctors')->group(function () {
+        Route::get('list', [DoctorController::class,'list'])->name('doctors.list');
+        Route::get('{id}/appointments/list', [DoctorController::class,'appointmentsList'])->name('doctors.appointments.list');
+        Route::get('{id}/patients/list', [DoctorController::class,'patientsList'])->name('doctors.patients.list');
+        Route::get('{id}/services/list', [DoctorController::class,'servicesList'])->name('doctors.services.list');
+    });
+
+    Route::prefix('doctors')->name('doctors.')->group(function () {
+        Route::get('list', [DoctorController::class,'list'])->name('list');
+        Route::get('{id}/appointments/list', [DoctorController::class,'appointmentsList'])->name('appointments.list');
+        Route::get('{id}/patients/list', [DoctorController::class,'patientsList'])->name('patients.list');
+        Route::get('{id}/services/list', [DoctorController::class,'servicesList'])->name('services.list');
     });
 });
-
-//Route::match('get, post', 'testTTT', [UserController::class,'auth']);
