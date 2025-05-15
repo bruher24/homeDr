@@ -51,7 +51,7 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany(Role::class, 'users_roles', 'user_id', 'role_id');
+        return $this->belongsToMany(Role::class);
     }
 
     public function bio()
@@ -66,7 +66,7 @@ class User extends Authenticatable
 
     public function settings()
     {
-        return $this->belongsToMany(Setting::class, 'users_settings', 'user_id', 'setting_id');
+        return $this->belongsToMany(Setting::class)->withPivot('value');
     }
 
     public function doctor()
@@ -84,18 +84,13 @@ class User extends Authenticatable
         return $this->hasOne(Photo::class);
     }
 
-    public function switchType(): void
+    public function messengers()
     {
-        if ($this->doctor()) {
-            DB::table('users_roles')->where('user_id', '=', $this->id)->update(['role_id' => 3]);
-            $this->doctor()->delete();
-            $this->patient()->create();
-        }
+        return $this->belongsToMany(Messenger::class)->withPivot('link');
+    }
 
-        if ($this->patient()) {
-            DB::table('users_roles')->where('user_id', '=', $this->id)->update(['role_id' => 2]);
-            $this->patient()->delete();
-            $this->doctor()->create();
-        }
+    public function additional_emails()
+    {
+        return $this->hasMany(Email::class);
     }
 }

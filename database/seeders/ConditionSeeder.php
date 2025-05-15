@@ -11,16 +11,16 @@ class ConditionSeeder extends Seeder
     {
         $conditions = [
             [
-                'name' => 'Test name 1',
-                'desc' => 'Test desc 1',
+                'name' => 'Только онлайн',
+                'desc' => 'без личных приемов',
             ],
             [
-                'name' => 'Test name 1',
-                'desc' => 'Test desc 1',
+                'name' => 'Только очно',
+                'desc' => 'без онлайна',
             ],
             [
-                'name' => 'Test name 1',
-                'desc' => 'Test desc 1',
+                'name' => 'Только дискорд',
+                'desc' => 'не отвлекаясь от главного',
             ],
         ];
         collect($conditions)->each(function ($condition) {

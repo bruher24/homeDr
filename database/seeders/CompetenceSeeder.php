@@ -11,16 +11,16 @@ class CompetenceSeeder extends Seeder
     {
         $competences = [
             [
-                'name' => 'Test name 1',
-                'desc' => 'Test desc 1',
+                'name' => 'Психиатрия',
+                'desc' => 'шизу лечить умеет',
             ],
             [
-                'name' => 'Test name 1',
-                'desc' => 'Test desc 1',
+                'name' => 'Психология',
+                'desc' => 'все началось с детства',
             ],
             [
-                'name' => 'Test name 1',
-                'desc' => 'Test desc 1',
+                'name' => 'СЛР',
+                'desc' => 'show must go on',
             ],
         ];
         collect($competences)->each(function ($competence) {

@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('diplomas', function (Blueprint $table) {
-            $table->id()->primary();
-            $table->string('name', 30);
-            $table->string('src', 100);
+        Schema::create('competence_doctor', function (Blueprint $table) {
+            $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('competence_id')->constrained('competences')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('diplomas');
+        Schema::dropIfExists('competence_doctor');
     }
 };

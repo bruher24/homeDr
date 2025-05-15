@@ -11,16 +11,16 @@ class SkillSeeder extends Seeder
     {
         $skills = [
             [
-                'name' => 'Test name 1',
-                'desc' => 'Test desc 1',
+                'name' => 'Понимание',
+                'desc' => 'да направит нас...',
             ],
             [
-                'name' => 'Test name 1',
-                'desc' => 'Test desc 1',
+                'name' => 'Вовлеченность',
+                'desc' => 'ну мы тебя понимаем',
             ],
             [
-                'name' => 'Test name 1',
-                'desc' => 'Test desc 1',
+                'name' => 'Отзывчивость',
+                'desc' => 'хорошо, в 04:00',
             ],
         ];
         collect($skills)->each(function ($skill) {

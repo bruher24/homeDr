@@ -18,4 +18,29 @@ class Patient extends Model
     {
         return $this->hasOne(Email::class);
     }
+
+    public function anamnesis()
+    {
+        return $this->hasMany(Anamnesis::class);
+    }
+
+    public function schedule()
+    {
+        return $this->hasMany(Schedule::class);
+    }
+
+    public function doctors()
+    {
+        return $this->belongsToMany(Doctor::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function diagnoses()
+    {
+        return $this->belongsToMany(Diagnosis::class)->withPivot('actuality');
+    }
 }

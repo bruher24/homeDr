@@ -11,16 +11,16 @@ class SpecialitySeeder extends Seeder
     {
         $specialities = [
             [
-                'name' => 'Test name 1',
-                'desc' => 'Test desc 1',
+                'name' => 'Психиатр',
+                'desc' => 'прими таблетки и я исчезну',
             ],
             [
-                'name' => 'Test name 1',
-                'desc' => 'Test desc 1',
+                'name' => 'Психолог',
+                'desc' => 'лучше сразу кредит бери',
             ],
             [
-                'name' => 'Test name 1',
-                'desc' => 'Test desc 1',
+                'name' => 'Гипнотизер',
+                'desc' => 'твои веки тяжелеют',
             ],
         ];
         collect($specialities)->each(function ($speciality) {

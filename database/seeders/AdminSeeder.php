@@ -11,11 +11,11 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name' => 'Admin',
+            'name' => 'Админ',
             'email' => 'admin@admin.com',
             'password' => bcrypt('1234'),
         ]);
-        DB::table('users_roles')->insert([
+        DB::table('role_user')->insert([
             'user_id' => 1,
             'role_id' => 1,
         ]);

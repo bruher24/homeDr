@@ -8,4 +8,9 @@ class Service extends Model
 {
     protected $fillable = ['name', 'description'];
     public $timestamps = false;
+
+    public function schedule()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }

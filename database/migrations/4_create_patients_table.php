@@ -14,18 +14,6 @@ return new class extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->id()->primary();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('fio', 64);
-            $table->date('dob');
-            $table->string('phone', 16);
-            $table->string('email', 50);
-            $table->string('vk', 100)->nullable();
-            $table->string('telegram', 100)->nullable();
-            $table->string('viber', 100)->nullable();
-            $table->string('whatsapp', 100)->nullable();
-            $table->string('skype', 100)->nullable();
-            $table->string('zoom', 100)->nullable();
-            $table->string('discord', 100)->nullable();
-            $table->string('teamspeak', 100)->nullable();
             $table->timestamps();
         });
     }

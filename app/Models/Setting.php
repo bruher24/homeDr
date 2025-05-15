@@ -8,4 +8,9 @@ class Setting extends Model
 {
     protected $fillable = ['user_id', 'name'];
     public $timestamps = false;
+
+    public function user()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

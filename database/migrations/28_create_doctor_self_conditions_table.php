@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bios', function (Blueprint $table) {
-            $table->id()->primary();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->text('text');
+        Schema::create('doctor_self_conditions', function (Blueprint $table) {
+            $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade')->onUpdate('cascade');
+            $table->text('condition_text');
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bios');
+        Schema::dropIfExists('doctor_self_conditions');
     }
 };

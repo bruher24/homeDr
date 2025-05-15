@@ -10,9 +10,9 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         $roles = [
-            ['name' => 'Test role 1'],
-            ['name' => 'Test role 2'],
-            ['name' => 'Test role 3'],
+            ['name' => 'admin'],
+            ['name' => 'doctor'],
+            ['name' => 'patient'],
         ];
         collect($roles)->each(function ($role) {
             Role::create($role);

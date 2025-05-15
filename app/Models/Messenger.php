@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Messenger extends Model
 {
-    protected $fillable = ['type', 'login'];
+    protected $fillable = ['name'];
     public $timestamps = false;
+
+    public function user()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

@@ -11,11 +11,11 @@ class BioSeeder extends Seeder
     {
         $bios = [
             [
-                'text' => 'Test name 1',
+                'text' => 'Самый главный',
                 'user_id' => 1
             ],
             [
-                'text' => 'Test name 1',
+                'text' => 'черт какой-то',
                 'user_id' => 2
             ],
         ];

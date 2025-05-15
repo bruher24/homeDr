@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('doctors_reviews', function (Blueprint $table) {
+        Schema::create('doctor_skill', function (Blueprint $table) {
             $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade')->onUpdate('cascade');
-            $table->dateTime('review_date');
-            $table->text('review_text');
-            $table->unsignedTinyInteger('stars');
+            $table->foreignId('skill_id')->constrained('skills')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('doctors_reviews');
+        Schema::dropIfExists('doctor_skill');
     }
 };

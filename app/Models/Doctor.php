@@ -23,4 +23,29 @@ class Doctor extends Model
     {
         return $this->hasMany(Email::class);
     }
+
+    public function diploma()
+    {
+        return $this->hasMany(Diploma::class);
+    }
+
+    public function anamnesis()
+    {
+        return $this->hasMany(Anamnesis::class);
+    }
+
+    public function schedule()
+    {
+        return $this->hasMany(Schedule::class);
+    }
+
+    public function patients()
+    {
+        return $this->belongsToMany(Patient::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

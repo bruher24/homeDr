@@ -11,16 +11,16 @@ class ServiceSeeder extends Seeder
     {
         $services = [
             [
-                'name' => 'Test name 1',
-                'desc' => 'Test desc 1',
+                'name' => 'Первая консультация',
+                'desc' => 'в первый класс',
             ],
             [
-                'name' => 'Test name 1',
-                'desc' => 'Test desc 1',
+                'name' => 'Регулярный прием',
+                'desc' => 'когда во второй-третий',
             ],
             [
-                'name' => 'Test name 1',
-                'desc' => 'Test desc 1',
+                'name' => 'Занятие',
+                'desc' => 'обучение чему-то например',
             ],
         ];
         collect($services)->each(function ($service) {

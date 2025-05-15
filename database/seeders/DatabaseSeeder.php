@@ -15,13 +15,14 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             AdminSeeder::class,
             UserSeeder::class,
+            BioSeeder::class,
             CompetenceSeeder::class,
             ConditionSeeder::class,
             DiagnosisSeeder::class,
             ServiceSeeder::class,
             SkillSeeder::class,
             SpecialitySeeder::class,
-            BioSeeder::class,
+            MessengerSeeder::class,
         ]);
     }
 }

@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users_settings', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('setting_id')->constrained('settings')->onDelete('cascade')->onUpdate('cascade');
+        Schema::create('messengers', function (Blueprint $table) {
+            $table->id()->primary();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users_settings');
+        Schema::dropIfExists('messengers');
     }
 };
