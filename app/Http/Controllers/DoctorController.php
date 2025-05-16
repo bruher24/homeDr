@@ -30,4 +30,11 @@ class DoctorController extends Controller
 
         return view('doctors.list', ['doctors' => $sorted, 'role' => 'doctor']);
     }
+
+    public function servicesList(Doctor $doctor)
+    {
+        return response()->json([
+            'services' => $doctor->services()->get(),
+        ]);
+    }
 }

@@ -11,8 +11,8 @@ class AppointmentController extends Controller
 {
     public function createForm(string $step = 'service')
     {
-        $services = $step == 'service' ? Service::has('doctors')->with('doctors')->get() : null;
         $doctors = Doctor::has('services')->with('services')->get();
+        $services = Service::all();
         return view("appointments.{$step}", compact('services', 'doctors'));
     }
 
