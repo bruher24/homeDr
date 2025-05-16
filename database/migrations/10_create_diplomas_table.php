@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('diplomas', function (Blueprint $table) {
             $table->id()->primary();
+            $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name', 30);
             $table->string('src', 100);
-            $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
