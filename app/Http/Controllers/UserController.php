@@ -29,7 +29,9 @@ class UserController extends Controller
     public function register(Request $request): RedirectResponse
     {
         $validated = $request->validate([
+            'surname' => 'required',
             'name' => 'required',
+            'patronymic' => 'required',
             'email' => 'required|email',
             'password' => 'required'
         ]);
@@ -42,11 +44,7 @@ class UserController extends Controller
         $user->save();
         $user->refresh();
 
-        // TODO: заменить на отношение
-        DB::table('users_roles')->insert([
-            'user_id' => $user->id,
-            'role_id' => 3,
-        ]);
+        $user->roles()->attach('3');
 
         if (Auth::attempt($validated, $remember)) {
             $request->session()->regenerate();

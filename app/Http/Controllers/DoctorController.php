@@ -3,14 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
+use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class DoctorController extends Controller
 {
+    public function create(Request $request)
+    {
+
+    }
+
     public function list(): View
     {
-        $doctors = Doctor::all();
-        return view('doctors.list', ['doctors' => $doctors, 'role' => 'doctor']);
+        $doctors = Doctor::with('user')->get();
+
+        $doctors->each(function (Doctor $doctor) {
+            //$doctor->append('fio');
+            $doctor->speciality = $doctor->speciality()->first()->name;
+        });
+
+        $sorted = $doctors->sortBy([
+            ['fio', 'asc'],
+        ]);
+
+        return view('doctors.list', ['doctors' => $sorted, 'role' => 'doctor']);
     }
 }

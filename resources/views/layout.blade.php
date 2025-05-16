@@ -27,9 +27,9 @@
     @stack('head')
 </head>
 <body class="font-sans antialiased">
-@include('utils.alert')
 @include('modals.register')
 @include('modals.login')
+@include('utils.alert')
 @include('header')
 <main>
     @yield('main')

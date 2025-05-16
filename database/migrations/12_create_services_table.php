@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id()->primary();
-            $table->string('name', 30);
+            $table->string('name', 32);
             $table->text('desc');
+            $table->float('min_price')->default(500);
         });
     }
 

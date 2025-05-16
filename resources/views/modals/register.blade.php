@@ -10,12 +10,20 @@
                 <form class="" method="post" action="{{ route('users.register') }}">
                     @csrf
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control rounded-3" name="name" id="floatingInput" placeholder="Name">
-                        <label for="floatingInput">Имя</label>
+                        <input type="text" class="form-control rounded-3" name="surname" id="floatingSurname" placeholder="Фамилия">
+                        <label for="floatingSurname">Фамилия</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control rounded-3" name="email" id="floatingInput" placeholder="name@example.com">
-                        <label for="floatingInput">Email</label>
+                        <input type="text" class="form-control rounded-3" name="name" id="floatingName" placeholder="Имя">
+                        <label for="floatingName">Имя</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control rounded-3" name="patronymic" id="floatingPatronymic" placeholder="Отчество">
+                        <label for="floatingPatronymic">Отчество</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control rounded-3" name="email" id="floatingEmail" placeholder="name@example.com">
+                        <label for="floatingEmail">Email</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="password" class="form-control rounded-3" name="password" id="floatingPassword" placeholder="Password">

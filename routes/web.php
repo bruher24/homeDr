@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PatientController;
@@ -24,16 +25,20 @@ Route::middleware([CheckAuth::class])->group(function () {
     });
 
     Route::prefix('doctors')->name('doctors.')->group(function () {
-        Route::get('list', [DoctorController::class,'list'])->name('list');
-        Route::get('{id}/appointments/list', [DoctorController::class,'appointmentsList'])->name('appointments.list');
+        Route::get('list', [DoctorController::class,'list'])->name('list')->withoutMiddleware([CheckAuth ::class]);
         Route::get('{id}/patients/list', [DoctorController::class,'patientsList'])->name('patients.list');
         Route::get('{id}/services/list', [DoctorController::class,'servicesList'])->name('services.list');
+        Route::get('{id}/details', [DoctorController::class,'details'])->name('details');
     });
 
     Route::prefix('patients')->name('patients.')->group(function () {
         Route::get('list', [PatientController::class,'list'])->name('list');
-        Route::get('{id}/appointments/list', [PatientController::class,'appointmentsList'])->name('appointments.list');
-        Route::get('{id}/appointments/create', [PatientController::class,'appointmentCreate'])->name('appointments.create');
         Route::get('{id}/doctors/list', [PatientController::class,'doctorsList'])->name('doctors.list');
+    });
+
+    Route::prefix('appointments')->name('appointments.')->group(function () {
+        Route::get('createForm/{step?}', [AppointmentController::class,'createForm'])->name('createForm');
+        Route::post('create/{step?}', [AppointmentController::class,'create'])->name('create');
+        Route::get('list/{role}/{id}', [AppointmentController::class,'list'])->name('list');
     });
 });

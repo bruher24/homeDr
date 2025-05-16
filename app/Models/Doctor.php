@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Services\UserService;
 use Illuminate\Database\Eloquent\Model;
 
 class Doctor extends Model
 {
     protected $guarded = [];
+    protected $appends = ['fio'];
     public $timestamps = true;
 
     public function user()
@@ -16,7 +18,7 @@ class Doctor extends Model
 
     public function speciality()
     {
-        return $this->belongsToMany(Speciality::class, 'doctors_specialities', 'doctor_id', 'speciality_id');
+        return $this->belongsToMany(Speciality::class);
     }
 
     public function email()
@@ -47,5 +49,20 @@ class Doctor extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function services()
+    {
+        return $this->belongsToMany(Service::class)->withPivot('price');
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
+    public function getFioAttribute()
+    {
+       return UserService::collectFio($this->user()->first());
     }
 }

@@ -51,3 +51,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+
+document.getElementById('submitDoc').addEventListener('click', (e) => {
+    e.preventDefault();
+    let val = document.querySelector('input[name="doctor"]:checked').value;
+    if (val != null){
+        let exists = document.getElementById('hiddenDoc');
+        if (exists) {
+            exists.remove();
+        }
+
+        let field = document.createElement('input');
+        field.type = 'hidden';
+        field.value = val;
+        field.id = "docId";
+
+        let form = document.getElementById('docForm');
+        form.appendChild(field);
+        form.submit();
+    }
+});

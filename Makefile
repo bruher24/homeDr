@@ -12,6 +12,10 @@ fill:
 	docker compose exec app php artisan migrate
 	docker compose exec app php artisan db:seed
 
+fresh:
+	docker compose exec app php artisan migrate:fresh
+	docker compose exec app php artisan db:seed
+
 stop:
 	docker compose down
 

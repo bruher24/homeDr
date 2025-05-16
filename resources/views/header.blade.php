@@ -6,59 +6,95 @@
             </a>
             <!--NAVBAR-->
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="{{ route('home') }}" class="nav-link px-2 text-secondary">Главная</a></li>
+                <li>
+                    <a class="nav-link px-2 text-secondary"
+                       href="{{ route('home') }}">
+                        Главная
+                    </a>
+                </li>
 
                 @cannot('is-doctor')
-                    <li><a href="{{ route('services.list') }}" class="nav-link px-2 text-white">Цены и услуги</a></li>
+                    <li>
+                        <a class="nav-link px-2 text-white"
+                           href="{{ route('services.list') }}">
+                            Цены и услуги
+                        </a>
+                    </li>
 
-                    <li><a href="{{ route('doctors.list') }}" class="nav-link px-2 text-white">Специалисты</a></li>
+                    <li><a class="nav-link px-2 text-white"
+                           href="{{ route('doctors.list') }}">
+                            Специалисты
+                        </a>
+                    </li>
 
                     <li>
-                        <a href="{{ route('patients.appointments.create', ['id' => 0]) }}"
-                           class="nav-link px-2 text-white">
+                        <a class="nav-link px-2 text-white"
+                            href="{{ route('appointments.createForm') }}">
                             Запись на прием
                         </a>
                     </li>
                 @endcannot
 
                 @can('is-admin')
-                    <li><a href="{{ route('admin') }}" class="nav-link px-2 text-white">Администрирование</a></li>
+                    <li>
+                        <a class="nav-link px-2 text-white"
+                           href="{{ route('admin') }}">
+                            Администрирование
+                        </a>
+                    </li>
                 @endcan
 
                 @can('is-doctor')
                     <li>
-                        <a href="{{ route('doctors.appointments.list', ['id' => auth()->user()->id]) }}"
-                           class="nav-link px-2 text-white">
+                        <a class="nav-link px-2 text-white"
+                           href="{{ route('doctors.appointments.list', ['id' => auth()->user()->id]) }}">
                             Мои приемы
                         </a>
                     </li>
 
                     <li>
-                        <a href="{{ route('doctors.patients.list', ['id' => auth()->user()->id]) }}"
-                           class="nav-link px-2 text-white">
+                        <a class="nav-link px-2 text-white"
+                           href="{{ route('doctors.patients.list', ['id' => auth()->user()->id]) }}">
                             Мои пациенты
                         </a>
                     </li>
 
                     <li>
-                        <a href="{{ route('doctors.services.list', ['id' => auth()->user()->id]) }}"
-                           class="nav-link px-2 text-white">
+                        <a class="nav-link px-2 text-white"
+                           href="{{ route('doctors.services.list', ['id' => auth()->user()->id]) }}">
                             Мои цены
                         </a>
                     </li>
 
-                    <li><a href="{{ route('doctors.list') }}" class="nav-link px-2 text-white">Коллеги</a></li>
+                    <li>
+                        <a class="nav-link px-2 text-white"
+                           href="{{ route('doctors.list') }}">
+                            Коллеги
+                        </a>
+                    </li>
                 @endcan
 
                 @can('is-patient')
-                    <li><a href="{{ route('patients.appointments.list', ['id' => $user->id]) }}"
-                           class="nav-link px-2 text-white">Мои приемы</a></li>
+                    <li>
+                        <a class="nav-link px-2 text-white"
+                           href="{{ route('patients.appointments.list', ['id' => $user->id]) }}">
+                            Мои приемы
+                        </a>
+                    </li>
 
-                    <li><a href="{{ route('patients.doctors.list', ['id' => $user->id]) }}"
-                           class="nav-link px-2 text-white">Мои врачи</a></li>
+                    <li><a class="nav-link px-2 text-white"
+                           href="{{ route('patients.doctors.list', ['id' => $user->id]) }}">
+                            Мои врачи
+                        </a>
+                    </li>
                 @endcan
 
-                <li><a href="{{ route('about') }}" class="nav-link px-2 text-white">О нас</a></li>
+                <li>
+                    <a class="nav-link px-2 text-white"
+                       href="{{ route('about') }}">
+                        О нас
+                    </a>
+                </li>
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -84,15 +120,28 @@
                              height="40"
                              class="rounded-circle">
                     </a>
-                    <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
-                        <li><a class="dropdown-item" href="{{ route('users.profile', ['section' => 'personal']) }}">Личный
-                                кабинет</a></li>
-                        <li><a class="dropdown-item" href="{{ route('users.profile', ['section' => 'settings']) }}">Настройки</a>
+                    <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                        <li>
+                            <a class="dropdown-item"
+                               href="{{ route('users.profile', ['section' => 'personal']) }}">
+                                Личный кабинет
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item"
+                               href="{{ route('users.profile', ['section' => 'settings']) }}">
+                                Настройки
+                            </a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="{{ route('users.logout') }}">Выйти</a></li>
+                        <li>
+                            <a class="dropdown-item"
+                               href="{{ route('users.logout') }}">
+                                Выйти
+                            </a>
+                        </li>
                     </ul>
                 </div>
             @endauth

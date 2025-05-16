@@ -13,4 +13,14 @@ class Service extends Model
     {
         return $this->hasMany(Schedule::class);
     }
+
+    public function doctors()
+    {
+        return $this->belongsToMany(Doctor::class)->withPivot('price');
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
 }

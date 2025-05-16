@@ -43,4 +43,9 @@ class Patient extends Model
     {
         return $this->belongsToMany(Diagnosis::class)->withPivot('actuality');
     }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
 }
