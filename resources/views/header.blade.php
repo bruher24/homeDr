@@ -38,7 +38,7 @@
                 @can('is-admin')
                     <li>
                         <a class="nav-link px-2 text-white"
-                           href="{{ route('admin') }}">
+                           href="{{ route('admin.dashboard') }}">
                             Администрирование
                         </a>
                     </li>

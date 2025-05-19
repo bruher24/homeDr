@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\MainController;
@@ -45,4 +46,8 @@ Route::middleware([CheckAuth::class])->group(function () {
 
     Route::get('schedule/{doctorId}/getDisabledDates', [ScheduleController::class,'getDisabledDates'])->name('getDisabledDates');
     Route::get('schedule/{doctorId}/getTimes/{date}', [ScheduleController::class,'getTimes'])->name('getTimes');
+
+    Route::prefix('admin')->name('admin.')->group(function () {
+       Route::get('dashboard', [AdminController::class,'dashboard'])->name('dashboard');
+    });
 });

@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Services\UserService;
 use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
 {
     protected $guarded = [];
+    protected $appends = ['fio'];
     public $timestamps = true;
 
     public function user()
@@ -47,5 +49,10 @@ class Patient extends Model
     public function appointments()
     {
         return $this->hasMany(Appointment::class);
+    }
+
+    public function getFioAttribute()
+    {
+        return UserService::collectFio($this->user()->first());
     }
 }

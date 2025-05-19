@@ -3,6 +3,19 @@
     <form class="mt-3 w-50 " id="docForm" method="post"
           action="{{ route('appointments.create') }}">
         @csrf
+
+        @can('is-admin')
+            <!--ПАЦИЕНТ (ДЛЯ АДМИНА)-->
+            <div class="mt-3 form-control">
+                <h3 class="mb-4">Выберите пациента</h3>
+                <select class="form-select select">
+                    <option disabled selected>Выберите пациента...</option>
+                    @foreach($patients as $patient)
+                        <option>{{ $patient->fio }}</option>
+                    @endforeach
+                </select>
+            </div>
+        @endcan
         <!--ВРАЧИ-->
         <div class="mt-3 form-control">
             <h3 class="mb-4">Выберите специалиста</h3>
@@ -23,7 +36,7 @@
         <!--УСЛУГИ-->
         <div class="mt-3 form-control" id="services-container" style="display: none;">
             <h3 class="mb-4">Выберите услугу</h3>
-                <div class="list-group list-group-checkable d-grid gap-2 border-0 w-100" id="services-list"></div>
+            <div class="list-group list-group-checkable d-grid gap-2 border-0 w-100" id="services-list"></div>
         </div>
         <!--КАЛЕНДАРЬ-->
 
@@ -40,7 +53,6 @@
                 </div>
             </div>
         </div>
-
 
 
         <input type="button" class="btn btn-success mt-2 w-25" id="submitDoc" value="Продолжить">
