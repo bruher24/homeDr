@@ -116,7 +116,7 @@
                     <a class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser1"
                        data-bs-toggle="dropdown" aria-expanded="false"
                        style="cursor: pointer">
-                        <img src="{{ auth()->user()->photo->src ?? 'storage/avatar.png'}}" alt="Avatar" width="40"
+                        <img src="{{ isset(auth()->user()->photo) ? auth()->user()->photo->src : '/storage/avatar.png'}}" alt="Avatar" width="40"
                              height="40"
                              class="rounded-circle">
                     </a>

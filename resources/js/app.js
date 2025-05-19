@@ -1,2 +1,4 @@
 import './bootstrap';
-import './main.js';
+import './showServicesByDoc.js';
+import './submitAppointmentForm.js';
+import './calendar.js';

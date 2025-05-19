@@ -4,6 +4,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -37,8 +38,11 @@ Route::middleware([CheckAuth::class])->group(function () {
     });
 
     Route::prefix('appointments')->name('appointments.')->group(function () {
-        Route::get('createForm/{step?}', [AppointmentController::class,'createForm'])->name('createForm');
-        Route::post('create/{step?}', [AppointmentController::class,'create'])->name('create');
+        Route::get('createForm', [AppointmentController::class,'createForm'])->name('createForm');
+        Route::post('create', [AppointmentController::class,'create'])->name('create');
         Route::get('list/{role}/{id}', [AppointmentController::class,'list'])->name('list');
     });
+
+    Route::get('schedule/{doctorId}/getDisabledDates', [ScheduleController::class,'getDisabledDates'])->name('getDisabledDates');
+    Route::get('schedule/{doctorId}/getTimes/{date}', [ScheduleController::class,'getTimes'])->name('getTimes');
 });

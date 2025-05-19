@@ -65,4 +65,9 @@ class Doctor extends Model
     {
        return UserService::collectFio($this->user()->first());
     }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }

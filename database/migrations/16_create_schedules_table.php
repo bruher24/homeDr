@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('schedule', function (Blueprint $table) {
-            $table->id('schedule_id')->primary();
+        Schema::create('schedules', function (Blueprint $table) {
+            $table->id('id')->primary();
             $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('service_id')->constrained('services')->onDelete('cascade')->onUpdate('cascade');
-            $table->dateTime('datetime');
-            $table->time('duration');
+            $table->enum('day_of_week', [1,2,3,4,5]);
+            $table->time('start_time');
+            $table->time('end_time');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('schedule');
+        Schema::dropIfExists('schedules');
     }
 };
