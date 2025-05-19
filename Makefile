@@ -1,7 +1,7 @@
 build:
-	docker compoe up --build -d
+	docker compose up --build -d
 	docker compose exec app composer update
-	docker compose exec app composer npm i
+	docker compose exec app npm i
 	docker compose down
 
 run:
