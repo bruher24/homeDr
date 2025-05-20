@@ -11,8 +11,8 @@
         </div>
         <div class="row g-3 mt-1">
             <div class="col-md-6">
-                <label class="form-label">Last Name</label>
-                <input type="text" class="form-control" value="{{$user->lastname}}">
+                <label class="form-label">Surname</label>
+                <input type="text" class="form-control" value="{{$user->surname}}">
             </div>
         </div>
         <div class="row g-3 mt-1">
@@ -25,7 +25,7 @@
             <div class="col-md-6">
                 <label class="form-label">О себе</label>
                 <textarea class="form-control"
-                          rows="4">{{$bio ?? 'Расскажите о себе...'}}</textarea>
+                          rows="4">{{$user->bio ?? 'Расскажите о себе...'}}</textarea>
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
                     <div class="col-4">
                         <input type="tel" class="form-control" id="ec-mobile-number"
                                aria-describedby="emailHelp" placeholder="+79998887766"
-                               value="{{$phone}}"/>
+                               value="{{$user->phones()->first()->number ?? ''}}"/>
                     </div>
                     <div class="col-sm-3">
                         <input type="button" class="form-control btn btn-success"
@@ -56,25 +56,24 @@
                 </div>
             </div>
         </div>
-        <div class="row g-3 mt-1">
-            <div class="col-md-6">
-                <label class="form-label">Telegram</label>
-                <input type="text" class="form-control" value="Alex">
-            </div>
-        </div>
-        <div class="row g-3 mt-1">
-            <div class="col-md-6">
-                <label class="form-label">Telegram</label>
-                <input type="text" class="form-control" value="Alex">
-            </div>
-        </div>
-        <div class="row g-3 mt-1">
-            <div class="col-md-6">
-                <label class="form-label">Telegram</label>
-                <input type="text" class="form-control" value="Alex">
-            </div>
-        </div>
         {{--    TODO: кнопка "добавить мессенджер" с выбором--}}
+        <div id="messengers">
+            @foreach($user->messengers()->get() as $messenger)
+                <div class="row g-3 mt-1">
+                    <div class="col-md-6">
+                        <label class="form-label">{{ $messenger->name }}</label>
+                        <div class="input-group ">
+                            <span class="input-group-text">{{ TELEGRAM_URL }}</span>
+                            <input type="text" class="form-control" placeholder="Укажите имя пользователя...">
+{{--                            TODO: проверка ссылки по кнопке--}}
+                            <button class="btn btn-success">Проверить</button>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+{{--            TODO: выбор мессенджера по кнопке--}}
+            <button class="btn btn-success my-4">Добавить мессенджер</button>
+        </div>
     </div>
 
 @endsection

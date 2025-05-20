@@ -8,7 +8,7 @@
             </div>
 
             <div class="modal-body p-5 pt-0">
-                <form class="" method="post" action="{{ route('users.auth') }}">
+                <form class="" method="post" action="{{ route('user.auth') }}">
                     @csrf
                     <div class="form-floating mb-3">
                         <input type="email" class="form-control rounded-3" name="email" id="floatingInput" placeholder="name@example.com">

@@ -87,27 +87,9 @@ class UserController extends Controller
 
     public function profile(string $section = 'personal'): View
     {
-        // TODO: пересмотреть логику профиля
-        // вынести в отдельный контроллер?
-        // тянуть специальности не так
-        $allowed = ['personal', 'type', 'settings'];
-        if (!in_array($section, $allowed)) {
-            $section = 'personal';
-        }
         $userId = Auth::id();
-        $user = User::with(['roles', 'bio', 'phones', 'settings'])->find($userId);
+        $user = User::with(['roles', 'bio', 'phones', 'settings', 'messengers'])->find($userId);
         $user->load('doctor') ?? $user->load('patient');
-
-        // TODO: вместо этого ужаса отдавать только юзера
-        return view('profile.' . $section,
-            [
-                'user' => $user,
-                'role' => $user->roles->first()->name,
-                'bio' => $user->bio->text,
-                'phone' => $user->phones->first()->number,
-                'settings' => $user->settings,
-                'section' => $section,
-                'specialities' => Speciality::all(),
-            ]);
+        return view('profile.' . $section, compact('user'));
     }
 }

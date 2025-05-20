@@ -19,18 +19,18 @@ Route::get('about', [MainController::class, 'about'])->name('about');
 
 
 Route::middleware([CheckAuth::class])->group(function () {
-    Route::prefix('users')->name('users.')->group(function () {
+    Route::prefix('user')->name('user.')->group(function () {
         Route::post('register', [UserController::class,'register'])->name('register')->withoutMiddleware([CheckAuth ::class]);
         Route::post('auth', [UserController::class,'auth'])->name('auth')->withoutMiddleware([CheckAuth ::class]);
         Route::get('logout', [UserController::class,'logout'])->name('logout');
-        Route::get('profile/{section?}', [UserController::class,'profile'])->name('profile');
+        Route::get('profile', [UserController::class,'profile'])->name('profile');
     });
 
-    Route::prefix('doctors')->name('doctors.')->group(function () {
+    Route::prefix('doctor')->name('doctor.')->group(function () {
         Route::get('list', [DoctorController::class,'list'])->name('list')->withoutMiddleware([CheckAuth ::class]);
-        Route::get('{id}/patients/list', [DoctorController::class,'patientsList'])->name('patients.list');
-        Route::get('{id}/services/list', [DoctorController::class,'servicesList'])->name('services.list');
-        Route::get('{id}/details', [DoctorController::class,'details'])->name('details');
+        Route::get('patients/list', [DoctorController::class,'patientsList'])->name('patients.list');
+        Route::get('services/list', [DoctorController::class,'servicesList'])->name('services.list');
+        Route::get('details', [DoctorController::class,'details'])->name('details');
     });
 
     Route::prefix('patients')->name('patients.')->group(function () {

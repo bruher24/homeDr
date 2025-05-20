@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -27,6 +28,8 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+    protected $appends = ['bio', 'phones', 'settings'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -86,6 +89,16 @@ class User extends Authenticatable
         return $this->hasMany(Email::class);
     }
 
+    public function doctor()
+    {
+        return $this->hasOne(Doctor::class);
+    }
+
+    public function patient()
+    {
+        return $this->hasOne(Patient::class);
+    }
+
     public function isAdmin()
     {
         return $this->roles()->where('name', 'admin')->exists();
@@ -99,5 +112,10 @@ class User extends Authenticatable
     public function isPatient()
     {
         return $this->roles()->where('name', 'patient')->exists();
+    }
+
+    public function getBioAttribute()
+    {
+        return $this->bio()->first()->text;
     }
 }

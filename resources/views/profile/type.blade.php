@@ -4,6 +4,7 @@
     <div class="mb-4">
         <h5 class="mb-4">Тип аккаунта</h5>
         <h1>убрать оно вообще</h1>
+{{--    TODO: тут вообще все перелопатить надо    --}}
         <form method="post" action="{{url("user/switch_type")}}">
             <div class="row g-4 mb-4">
                 <div class="col-md-6">
