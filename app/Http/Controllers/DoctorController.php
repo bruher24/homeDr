@@ -12,25 +12,22 @@ class DoctorController extends Controller
 {
     public function create(Request $request)
     {
-
+        // TODO: реализовать
     }
 
     public function list(): View
     {
         $doctors = Doctor::with('user')->get();
 
-        $doctors->each(function (Doctor $doctor) {
-            //$doctor->append('fio');
-            $doctor->speciality = $doctor->speciality()->first()->name;
-        });
-
+        // TODO: реализовать сортировку
         $sorted = $doctors->sortBy([
             ['fio', 'asc'],
         ]);
 
-        return view('doctors.list', ['doctors' => $sorted, 'role' => 'doctor']);
+        return view('doctors.list', ['doctors' => $sorted]);
     }
 
+    // TODO: избавиться от этого вообще по хорошему
     public function servicesList(int $doctorId)
     {
         $doctor = Doctor::with('services')->findOrFail($doctorId);

@@ -24,10 +24,12 @@ class UserController extends Controller
 
     public function index(): View
     {
+        // TODO: реализовать|убрать
     }
 
     public function register(Request $request): RedirectResponse
     {
+        // TODO: вынести в валидатор
         $validated = $request->validate([
             'surname' => 'required',
             'name' => 'required',
@@ -57,6 +59,7 @@ class UserController extends Controller
 
     public function auth(Request $request): RedirectResponse
     {
+        // TODO: вынести в валидатор
         $validated = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
@@ -95,6 +98,7 @@ class UserController extends Controller
         $user = User::with(['roles', 'bio', 'phones', 'settings'])->find($userId);
         $user->load('doctor') ?? $user->load('patient');
 
+        // TODO: вместо этого ужаса отдавать только юзера
         return view('profile.' . $section,
             [
                 'user' => $user,

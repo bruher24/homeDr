@@ -11,6 +11,7 @@ class ScheduleController extends Controller
 {
     public function getDisabledDates($doctorId)
     {
+        // TODO: добавить реализацию
         return response()->json([
             'dates' => [
                 '2025-05-19',
@@ -21,6 +22,7 @@ class ScheduleController extends Controller
 
     public function getTimes($doctorId, $date)
     {
+        // TODO: вынести в сервис вместе с другим методом?
         Carbon::setLocale('ru');
         $dayOfWeek = Carbon::parse($date)->format('w');
         $schedule = Schedule::where('doctor_id', $doctorId)->where('day_of_week', $dayOfWeek)->first();

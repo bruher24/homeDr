@@ -19,12 +19,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'surname',
+        'name',
         'patronymic',
+        'birthday',
+        'stage',
         'email',
         'password',
-        'bio',
     ];
 
     /**
@@ -70,16 +71,6 @@ class User extends Authenticatable
         return $this->belongsToMany(Setting::class)->withPivot('value');
     }
 
-    public function doctor()
-    {
-        return $this->hasOne(Doctor::class);
-    }
-
-    public function patient()
-    {
-        return $this->hasOne(Patient::class);
-    }
-
     public function photo()
     {
         return $this->hasOne(Photo::class);
@@ -93,5 +84,20 @@ class User extends Authenticatable
     public function additional_emails()
     {
         return $this->hasMany(Email::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->roles()->where('name', 'admin')->exists();
+    }
+
+    public function isDoctor()
+    {
+        return $this->roles()->where('name', 'doctor')->exists();
+    }
+
+    public function isPatient()
+    {
+        return $this->roles()->where('name', 'patient')->exists();
     }
 }

@@ -12,6 +12,6 @@ class ServiceController extends Controller
     public function list(): View
     {
         $services = Service::all();
-        return view('services.list', ['services' => $services]);
+        return view('services.list', compact('services'));
     }
 }

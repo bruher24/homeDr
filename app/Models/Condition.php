@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Condition extends Model
 {
-    protected $fillable = [ 'condition_text'];
+    protected $fillable = [ 'name', 'desc'];
     public $timestamps = false;
 }

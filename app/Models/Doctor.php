@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Doctor extends Model
 {
     protected $guarded = [];
-    protected $appends = ['fio'];
+    protected $appends = ['fio', 'speciality'];
     public $timestamps = true;
 
     public function user()
@@ -64,6 +64,11 @@ class Doctor extends Model
     public function getFioAttribute()
     {
        return UserService::collectFio($this->user()->first());
+    }
+
+    public function getSpecialityAttribute()
+    {
+        return $this->speciality()->first()->name;
     }
 
     public function schedules()

@@ -13,8 +13,8 @@ class MainController extends Controller
         if (Auth::check()) {
             $userId = Auth::id();
             $user = User::with(['roles', 'photo'])->find($userId);
-            return view('welcome', ['user' => $user, 'role' => $user->roles->first()->name]);
+            return view('welcome', compact('user'));
         }
-        return view('welcome', ['role' => 'guest']);
+        return view('welcome');
     }
 }

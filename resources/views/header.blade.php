@@ -38,7 +38,7 @@
                 @can('is-admin')
                     <li>
                         <a class="nav-link px-2 text-white"
-                           href="{{ route('admin.dashboard') }}">
+                           href="{{ route('admin.index') }}">
                             Администрирование
                         </a>
                     </li>
@@ -47,21 +47,21 @@
                 @can('is-doctor')
                     <li>
                         <a class="nav-link px-2 text-white"
-                           href="{{ route('doctors.appointments.list', ['id' => auth()->user()->id]) }}">
+                           href="{{ route('doctors.appointments.list', ['id' => auth()->id()]) }}">
                             Мои приемы
                         </a>
                     </li>
 
                     <li>
                         <a class="nav-link px-2 text-white"
-                           href="{{ route('doctors.patients.list', ['id' => auth()->user()->id]) }}">
+                           href="{{ route('doctors.patients.list', ['id' => auth()->id()]) }}">
                             Мои пациенты
                         </a>
                     </li>
 
                     <li>
                         <a class="nav-link px-2 text-white"
-                           href="{{ route('doctors.services.list', ['id' => auth()->user()->id]) }}">
+                           href="{{ route('doctors.services.list', ['id' => auth()->id()]) }}">
                             Мои цены
                         </a>
                     </li>

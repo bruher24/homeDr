@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Email extends Model
 {
-    protected $fillable = ['email'];
+    protected $fillable = ['email', 'user_id'];
     public $timestamps = false;
 
     public function doctor()

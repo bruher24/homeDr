@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
 {
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'desc', 'min_price'];
     public $timestamps = false;
 
     public function schedule()

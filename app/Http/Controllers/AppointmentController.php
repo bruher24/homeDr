@@ -14,16 +14,17 @@ class AppointmentController extends Controller
     public function createForm()
     {
         $patients = [];
-        if (Auth::user()->roles->first()->name == "admin") {
+        if (Auth::user()->isAdmin()) {
             $patients = Patient::all();
         }
         $doctors = Doctor::has('services')->with('services')->get();
-        $services = Service::all();
+        $services = Service::has('doctors')->get();
         return view("appointments.createForm", compact('services', 'doctors', 'patients'));
     }
 
     public function create(Request $request)
     {
+        // TODO: вынести в валидатор модели
         $validated = $request->validate([
             'doctor_id' => 'required',
             'patient_id' => '',
