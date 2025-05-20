@@ -63,7 +63,7 @@
                     <div class="col-md-6">
                         <label class="form-label">{{ $messenger->name }}</label>
                         <div class="input-group ">
-                            <span class="input-group-text">{{ TELEGRAM_URL }}</span>
+                            <span class="input-group-text">{{ config('constant.telegram_url') }}</span>
                             <input type="text" class="form-control" placeholder="Укажите имя пользователя...">
 {{--                            TODO: проверка ссылки по кнопке--}}
                             <button class="btn btn-success">Проверить</button>
@@ -72,7 +72,24 @@
                 </div>
             @endforeach
 {{--            TODO: выбор мессенджера по кнопке--}}
-            <button class="btn btn-success my-4">Добавить мессенджер</button>
+                <div class="dropdown my-2">
+                    <a class="d-block link-light text-decoration-none dropdown-toggle w-25" id="dropdownUser1"
+                       data-bs-toggle="dropdown" aria-expanded="false"
+                       style="cursor: pointer">
+                        <button class="btn btn-success">Добавить мессенджер</button>
+                    </a>
+                    <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                        @foreach(config('constant.messengers') as $type)
+                            <li>
+{{--                                TODO: сделать красиво--}}
+                                <a class="dropdown-item messenger-select">
+{{--                                    TODO: добавить значок мессенджера--}}
+                                    {{ $type }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
         </div>
     </div>
 

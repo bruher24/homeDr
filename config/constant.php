@@ -1,3 +1,10 @@
 <?php
 
-const TELEGRAM_URL = 'https://telegram.me/';
+return [
+    'telegram_url' => 'https://telegram.me/',
+    'messengers' => [
+        'Telegram',
+        'VK',
+        'Discord',
+    ],
+];
