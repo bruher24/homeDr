@@ -56,7 +56,6 @@
                 </div>
             </div>
         </div>
-        {{--    TODO: кнопка "добавить мессенджер" с выбором--}}
         <div id="messengers">
             @foreach($user->messengers()->get() as $messenger)
                 <div class="row g-3 mt-1">
@@ -71,7 +70,6 @@
                     </div>
                 </div>
             @endforeach
-{{--            TODO: выбор мессенджера по кнопке--}}
                 <div class="dropdown my-2">
                     <a class="d-block link-light text-decoration-none dropdown-toggle w-25" id="dropdownUser1"
                        data-bs-toggle="dropdown" aria-expanded="false"
