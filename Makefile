@@ -1,5 +1,6 @@
 build:
-	docker compose up --build -d
+	docker compoe build
+	docker compose up -d app
 	docker compose exec app composer update
 	docker compose exec app npm i
 	docker compose down
