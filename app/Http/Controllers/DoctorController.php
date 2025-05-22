@@ -27,13 +27,4 @@ class DoctorController extends Controller
 
         return view('doctors.list', ['doctors' => $sorted]);
     }
-
-    // TODO: избавиться от этого вообще по хорошему
-    public function servicesList(int $doctorId)
-    {
-        $doctor = Doctor::with('services')->findOrFail($doctorId);
-        return response()->json([
-            'services' => $doctor->services()->get(),
-        ]);
-    }
 }

@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\DoctorController;
-use App\Http\Controllers\ScheduleController;
+use App\Services\DoctorService;
+use App\Services\ScheduleService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -9,7 +9,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('doctors/{doctor}/services/list', [DoctorController::class,'servicesList'])->name('services.list');
+Route::get('doctors/{doctor}/services/list', [DoctorService::class,'servicesList'])->name('services.list');
 
-Route::get('schedule/{doctorId}/getDisabledDates', [ScheduleController::class,'getDisabledDates'])->name('getDisabledDates');
-Route::get('schedule/{doctorId}/getTimes/{date}', [ScheduleController::class,'getTimes'])->name('getTimes');
+Route::get('schedule/{doctorId}/getDisabledDates', [ScheduleService::class,'getDisabledDates'])->name('getDisabledDates');
+Route::get('schedule/{doctorId}/getTimes/{date}', [ScheduleService::class,'getTimes'])->name('getTimes');
