@@ -30,6 +30,15 @@
 @include('modals.register')
 @include('modals.login')
 @include('utils.alert')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 @include('header')
 <main>
     @yield('main')
