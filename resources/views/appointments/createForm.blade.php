@@ -4,7 +4,7 @@
           action="{{ route('appointments.create') }}">
         @csrf
 
-        @can('is-admin')
+        @canany('is-admin', 'is-doctor')
             <!--ПАЦИЕНТ (ДЛЯ АДМИНА)-->
             <div class="mt-3 form-control">
                 <h3 class="mb-4">Выберите пациента</h3>
@@ -15,7 +15,7 @@
                     @endforeach
                 </select>
             </div>
-        @endcan
+        @endcanany
         <!--ВРАЧИ-->
         <div class="mt-3 form-control">
             <h3 class="mb-4">Выберите специалиста</h3>
@@ -28,7 +28,7 @@
                            for="doc{{ $doctor->id }}">
                         <span class="text-dark">{{ $doctor->fio }}</span>
                         <br>
-                        <span class="text-secondary">{{ $doctor->speciality->first()->name }}</span>
+                        <span class="text-secondary">{{ $doctor->speciality }}</span>
                     </label>
                 @endforeach
             </div>

@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAppointmentRequest;
 use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\Service;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class AppointmentController extends Controller
 {
-    public function createForm()
+    public function createForm(): View
     {
         $patients = [];
         if (Auth::user()->isAdmin()) {
@@ -22,17 +23,9 @@ class AppointmentController extends Controller
         return view("appointments.createForm", compact('services', 'doctors', 'patients'));
     }
 
-    public function create(Request $request)
+    public function create(StoreAppointmentRequest $request)
     {
-        // TODO: вынести в валидатор модели
-        $validated = $request->validate([
-            'doctor_id' => 'required',
-            'patient_id' => '',
-            'service_id' => 'required',
-            'date' => 'required',
-            'time' => 'required',
-        ]);
-
+        $validated = $request->validated();
         $appointment = new Appointment($validated);
         $appointment->patient_id = $request->patient_id ?? Auth::id();
         $appointment->save();

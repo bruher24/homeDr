@@ -16,29 +16,14 @@ class Doctor extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function speciality()
-    {
-        return $this->belongsToMany(Speciality::class);
-    }
-
     public function email()
     {
         return $this->hasMany(Email::class);
     }
 
-    public function diploma()
+    public function diplomas()
     {
         return $this->hasMany(Diploma::class);
-    }
-
-    public function anamnesis()
-    {
-        return $this->hasMany(Anamnesis::class);
-    }
-
-    public function schedule()
-    {
-        return $this->hasMany(Schedule::class);
     }
 
     public function patients()
@@ -68,11 +53,36 @@ class Doctor extends Model
 
     public function getSpecialityAttribute()
     {
-        return $this->speciality()->first()->name;
+        return $this->specialities()->first()->name;
     }
 
     public function schedules()
     {
         return $this->hasMany(Schedule::class);
+    }
+
+    public function competences()
+    {
+        return $this->belongsToMany(Competence::class);
+    }
+
+    public function conditions()
+    {
+        return $this->belongsToMany(Condition::class);
+    }
+
+    public function self_conditions()
+    {
+        return $this->hasMany(SelfConditions::class);
+    }
+
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class);
+    }
+
+    public function specialities()
+    {
+        return $this->belongsToMany(Speciality::class);
     }
 }

@@ -10,9 +10,10 @@ use Illuminate\View\View;
 
 class DoctorController extends Controller
 {
-    public function create(Request $request)
+    public function store(Request $request)
     {
-        // TODO: реализовать
+        $validated = $request->validated();
+        $doctor = Doctor::create();
     }
 
     public function list(): View

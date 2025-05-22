@@ -2,25 +2,26 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use App\Models\Bio;
 
 class BioSeeder extends Seeder
 {
     public function run(): void
     {
-        $bios = [
-            [
-                'text' => 'Самый главный',
-                'user_id' => 1
-            ],
-            [
-                'text' => 'черт какой-то',
-                'user_id' => 2
-            ],
-        ];
-        collect($bios)->each(function ($bio) {
-            Bio::create($bio);
-        });
+        $admin = User::find(1);
+        $admin->bio()->create([
+            'text' => 'Самый главный',
+        ]);
+
+        $user = User::find(2);
+        $user->bio()->create([
+            'text' => 'Доктар',
+        ]);
+
+        $patient = User::find(3);
+        $patient->bio()->create([
+            'text' => 'Бальной',
+        ]);
     }
 }

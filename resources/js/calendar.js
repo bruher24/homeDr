@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Функция для загрузки недоступных дат
     function loadDisabledDates(doctorId) {
-        fetch(`/schedule/${doctorId}/getDisabledDates`)
+        fetch(`/api/schedule/${doctorId}/getDisabledDates`)
             .then(response => response.json())
             .then(data => {
                 // Получаем даты с сервера
@@ -63,9 +63,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Функция для загрузки доступного времени
     function loadAvailableTimes(selectedDate) {
         const doctorId = document.querySelector("input[name='doctor']:checked").value;
-        const dateStr = selectedDate.toISOString().split('T')[0];
+        const dateStr = formatDate(selectedDate);
+        console.log(dateStr)
 
-        fetch(`/schedule/${doctorId}/getTimes/${dateStr}`)
+        fetch(`/api/schedule/${doctorId}/getTimes/${dateStr}`)
             .then(response => response.json())
             .then(data => {
                 const timeSelect = document.getElementById("appointmentTime");
@@ -85,6 +86,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     timeSelect.appendChild(option);
                 }
             });
+    }
+
+    // Вспомогательная функция для форматирования даты в YYYY-MM-DD
+    function formatDate(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
     }
 
     // Обработчик выбора врача

@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('anamneses', function (Blueprint $table) {
             $table->id()->primary();
-            $table->foreignId('patient_id')->constrained('patients')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('doctor_id')->constrained('doctors')->onDelete('cascade')->onUpdate('cascade');
             $table->text('text');
             $table->timestamps();
         });

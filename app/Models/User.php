@@ -4,10 +4,9 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -89,6 +88,7 @@ class User extends Authenticatable
         return $this->hasMany(Email::class);
     }
 
+    // TODO: странно выглядит
     public function doctor()
     {
         return $this->hasOne(Doctor::class);
@@ -103,7 +103,7 @@ class User extends Authenticatable
     {
         return $this->roles()->where('name', 'admin')->exists();
     }
-
+    // TODO: нужно ли?
     public function isDoctor()
     {
         return $this->roles()->where('name', 'doctor')->exists();

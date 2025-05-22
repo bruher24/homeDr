@@ -26,7 +26,6 @@ class ScheduleController extends Controller
         Carbon::setLocale('ru');
         $dayOfWeek = Carbon::parse($date)->format('w');
         $schedule = Schedule::where('doctor_id', $doctorId)->where('day_of_week', $dayOfWeek)->first();
-
         $startTime = Carbon::createFromTimeString($schedule->start_time);
         $endTime = Carbon::createFromTimeString($schedule->end_time);
 

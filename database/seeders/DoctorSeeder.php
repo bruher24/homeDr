@@ -2,24 +2,23 @@
 
 namespace Database\Seeders;
 
+use App\Models\Doctor;
 use Illuminate\Database\Seeder;
-use App\Models\Bio;
 
 class DoctorSeeder extends Seeder
 {
     public function run(): void
     {
-        $doctors = [
-            [
-                'user_id' => 2,
-                'fio' => 'test fio',
-                'stage' => 5,
-                'dob' => '01.01.2001',
-
-            ],
-        ];
-        collect($doctors)->each(function ($doctor) {
-            Bio::create($doctor);
-        });
+        $doctor = Doctor::find(1);
+        $doctor->competences()->attach([1, 3]);
+        $doctor->conditions()->attach(1);
+        $doctor->services()->attach(1, ['price' => 333]);
+        $doctor->skills()->attach(1);
+        $doctor->specialities()->attach(1);
+        $doctor->schedules()->create([
+            'day_of_week' => '1',
+            'start_time' => '09:00',
+            'end_time' => '17:00',
+        ]);
     }
 }

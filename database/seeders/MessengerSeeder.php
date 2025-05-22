@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use App\Models\Messenger;
-use Illuminate\Support\Facades\DB;
 
 class MessengerSeeder extends Seeder
 {
@@ -24,11 +24,5 @@ class MessengerSeeder extends Seeder
         collect($messengers)->each(function ($messenger) {
             Messenger::create($messenger);
         });
-
-        DB::table('messenger_user')->insert([
-            'messenger_id' => 1,
-            'user_id' => 1,
-            'link' => 'https://telegram.me/12345',
-        ]);
     }
 }

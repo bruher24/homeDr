@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->id()->primary();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('rating')->nullable();
+            $table->unsignedInteger('stage')->default(0);
+            $table->float('rating', 2)->default(5);
             $table->timestamps();
         });
     }

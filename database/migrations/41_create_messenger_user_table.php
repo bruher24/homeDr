@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('messenger_user', function (Blueprint $table) {
-            $table->foreignId('messenger_id')->constrained('messengers')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('messenger_id')->constrained('messengers')->onDelete('cascade')->onUpdate('cascade');
             $table->string('link');
             $table->timestamps();
         });

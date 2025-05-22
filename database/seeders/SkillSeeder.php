@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use App\Models\Skill;
 
@@ -16,7 +17,7 @@ class SkillSeeder extends Seeder
             ],
             [
                 'name' => 'Вовлеченность',
-                'desc' => 'ну мы тебя понимаем',
+                'desc' => 'ага-ага, а она че??',
             ],
             [
                 'name' => 'Отзывчивость',

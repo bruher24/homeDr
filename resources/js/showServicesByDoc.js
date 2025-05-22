@@ -10,7 +10,7 @@ $(document).ready(function () {
 
             // Загружаем услуги через AJAX
             $.ajax({
-                url: '/doctors/' + doctorId + '/services/list', // URL для получения услуг
+                url: '/api/doctors/' + doctorId + '/services/list', // URL для получения услуг
                 method: 'GET',
                 data: {id: doctorId},
                 success: function (response) {

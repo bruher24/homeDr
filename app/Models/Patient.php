@@ -21,9 +21,9 @@ class Patient extends Model
         return $this->hasOne(Email::class);
     }
 
-    public function anamnesis()
+    public function anamneses()
     {
-        return $this->hasMany(Anamnesis::class);
+        return $this->belongsToMany(Anamnesis::class);
     }
 
     public function schedule()

@@ -29,7 +29,6 @@ Route::middleware([CheckAuth::class])->group(function () {
     Route::prefix('doctor')->name('doctor.')->group(function () {
         Route::get('list', [DoctorController::class,'list'])->name('list')->withoutMiddleware([CheckAuth ::class]);
         Route::get('patients/list', [DoctorController::class,'patientsList'])->name('patients.list');
-        Route::get('services/list', [DoctorController::class,'servicesList'])->name('services.list');
         Route::get('details', [DoctorController::class,'details'])->name('details');
     });
 
@@ -43,9 +42,6 @@ Route::middleware([CheckAuth::class])->group(function () {
         Route::post('create', [AppointmentController::class,'create'])->name('create');
         Route::get('list/{role}/{id}', [AppointmentController::class,'list'])->name('list');
     });
-
-    Route::get('schedule/{doctorId}/getDisabledDates', [ScheduleController::class,'getDisabledDates'])->name('getDisabledDates');
-    Route::get('schedule/{doctorId}/getTimes/{date}', [ScheduleController::class,'getTimes'])->name('getTimes');
 
     Route::prefix('admin')->name('admin.')->group(function () {
        Route::get('index', [AdminController::class,'index'])->name('index');

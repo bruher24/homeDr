@@ -15,12 +15,12 @@ use Illuminate\View\View;
 class UserController extends Controller
 {
 //    TODO: реализовать функционал, потом уже рефакторить в сервисы и интерфейсы
-//    private $userService;
-//
-//    public function __construct(UserService $service)
-//    {
-//        $this->userService = $service;
-//    }
+    private UserService $userService;
+
+    public function __construct(UserService $service)
+    {
+        $this->userService = $service;
+    }
 
     public function index(): View
     {
@@ -39,14 +39,8 @@ class UserController extends Controller
         ]);
 
         $remember = $request->input('remember');
-        $input = $request->all();
 
-        $user = new User();
-        $user->fill($input);
-        $user->save();
-        $user->refresh();
-
-        $user->roles()->attach('3');
+        $user = $this->userService->createUser($validated);
 
         if (Auth::attempt($validated, $remember)) {
             $request->session()->regenerate();
