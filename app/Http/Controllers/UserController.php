@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthUserRequest;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\Speciality;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Gate;
@@ -27,20 +29,13 @@ class UserController extends Controller
         // TODO: реализовать|убрать
     }
 
-    public function register(Request $request): RedirectResponse
+
+    // TODO: пересмотреть, что должно быть в контроллерах
+    public function register(StoreUserRequest $request): RedirectResponse
     {
-        // TODO: вынести в валидатор
-        $validated = $request->validate([
-            'surname' => 'required',
-            'name' => 'required',
-            'patronymic' => 'required',
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-
+        $validated = $request->validated();
         $remember = $request->input('remember');
-
-        $user = $this->userService->createUser($validated);
+        $this->userService->createUser($validated);
 
         if (Auth::attempt($validated, $remember)) {
             $request->session()->regenerate();
@@ -51,14 +46,11 @@ class UserController extends Controller
         ])->onlyInput('email');
     }
 
-    public function auth(Request $request): RedirectResponse
+    public function auth(AuthUserRequest $request): RedirectResponse
     {
-        // TODO: вынести в валидатор
-        $validated = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
+        $validated = $request->validated();
         $remember = $request->input('remember');
+
         if (Auth::attempt($validated, $remember)) {
             $request->session()->regenerate();
             return redirect()->intended()->with('success', 'Вы успешо авторизованы!');
@@ -71,9 +63,7 @@ class UserController extends Controller
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/')->with('success', 'Вы успешно вышли из аккаунта.');
@@ -83,7 +73,8 @@ class UserController extends Controller
     {
         $userId = Auth::id();
         $user = User::with(['roles', 'bio', 'phones', 'settings', 'messengers'])->find($userId);
-        $user->load('doctor') ?? $user->load('patient');
+        $user->loadMissing(['doctor, patient']);
+
         return view('profile.' . $section, compact('user'));
     }
 }
