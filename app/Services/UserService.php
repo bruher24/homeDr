@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Exceptions\UserException;
 use App\Models\User;
+use Exception;
 
 class UserService
 {
@@ -14,10 +16,14 @@ class UserService
     public static function createUser(array $data): User
     {
         $user = new User($data);
-        $user->save();
+        if (!$user->save()) {
+            throw new UserException('Ошибка при сохранении пользователя!');
+        }
         $user->refresh();
-        $user->roles()->attach('3');
+        $user->roles()->attach(RoleService::$patient);
         $user->patient()->create();
         return $user;
     }
+
+
 }

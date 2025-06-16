@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\UserException;
 use App\Http\Requests\AuthUserRequest;
 use App\Http\Requests\StoreUserRequest;
-use App\Models\Speciality;
 use App\Services\UserService;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -35,7 +33,12 @@ class UserController extends Controller
     {
         $validated = $request->validated();
         $remember = $request->input('remember');
-        $this->userService->createUser($validated);
+        try {
+            $this->userService->createUser($validated);
+        } catch (UserException $e) {
+            logger($e->getMessage());
+            return back()->withErrors([$e->getMessage()]);
+        }
 
         if (Auth::attempt($validated, $remember)) {
             $request->session()->regenerate();
