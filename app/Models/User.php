@@ -98,7 +98,7 @@ class User extends Authenticatable
     {
         return $this->hasOne(Patient::class);
     }
-
+    ////
     public function isAdmin()
     {
         return $this->roles()->where('name', 'admin')->exists();
