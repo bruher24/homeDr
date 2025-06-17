@@ -22,10 +22,10 @@ class UserService
 
     public function createUser(array $data): User
     {
-        $user = $this->repository->create($data);
-
-        if (!$user->save()) {
-            throw new UserException('Ошибка при сохранении пользователя!');
+        try{
+            $user = $this->repository->create($data);
+        }catch (UserException $e){
+            logger($e->getMessage());
         }
 
         $user->roles()->attach(RoleService::$patient);
