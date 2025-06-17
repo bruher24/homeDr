@@ -4,15 +4,15 @@ namespace App\Services;
 
 use App\Exceptions\UserException;
 use App\Models\User;
-use App\Repositories\UserRepository;
+use App\Interfaces\RepositoryInterface;
 
 class UserService
 {
-    private $userRepository;
+    private RepositoryInterface $repository;
 
-    public function __construct()
+    public function __construct(RepositoryInterface $repository)
     {
-        $this->userRepository = new UserRepository();
+        $this->repository = $repository;
     }
 
     public function collectFio(User $user): string
@@ -22,7 +22,7 @@ class UserService
 
     public function createUser(array $data): User
     {
-        $user = $this->userRepository->create($data);
+        $user = $this->repository->create($data);
 
         if (!$user->save()) {
             throw new UserException('Ошибка при сохранении пользователя!');
@@ -35,7 +35,7 @@ class UserService
 
     public function getUser(int $id): User
     {
-        $user = $this->userRepository->get($id);
+        $user = $this->repository->get($id);
     }
 
 

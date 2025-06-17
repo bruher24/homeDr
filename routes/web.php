@@ -24,6 +24,8 @@ Route::middleware([CheckAuth::class])->group(function () {
         Route::post('auth', [UserController::class,'auth'])->name('auth')->withoutMiddleware([CheckAuth ::class]);
         Route::get('logout', [UserController::class,'logout'])->name('logout');
         Route::get('profile', [UserController::class,'profile'])->name('profile');
+        Route::put('update', [UserController::class,'update'])->name('update');
+        Route::delete('delete', [UserController::class,'delete'])->name('delete');
     });
 
     Route::prefix('doctor')->name('doctor.')->group(function () {

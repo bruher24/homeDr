@@ -3,30 +3,15 @@
 namespace App\Repositories;
 
 use App\Interfaces\RepositoryInterface;
-use App\Models\Doctor;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-class DoctorRepository implements RepositoryInterface
+final class PatientRepository implements RepositoryInterface
 {
-    public function getAll(): Collection
-    {
-        return Doctor::with([
-            'user',
-            'email',
-            'patients',
-            'appointments',
-            'schedules',
-            'services',
-            'specialities',
-            'competences',
-            'skills',
-            'conditions',
-            'self_conditions',
-            'diplomas',
-            'reviews',
-        ])->get();
-    }
+    private array $relations = [
+        'roles',
+        'photo',
+    ];
 
     public function create(array $attributes): Model
     {
@@ -36,6 +21,11 @@ class DoctorRepository implements RepositoryInterface
     public function get(int $id): Model
     {
         // TODO: Implement get() method.
+    }
+
+    public function getAll(): Collection
+    {
+        // TODO: Implement getAll() method.
     }
 
     public function update(Model $model, array $attributes): Model

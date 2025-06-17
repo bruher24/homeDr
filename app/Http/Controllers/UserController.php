@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Exceptions\UserException;
 use App\Http\Requests\AuthUserRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Repositories\DoctorRepository;
+use App\Repositories\UserRepository;
 use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,12 +16,11 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
-//    TODO: реализовать функционал, потом уже рефакторить в сервисы и интерфейсы
     private UserService $userService;
 
-    public function __construct(UserService $service)
+    public function __construct()
     {
-        $this->userService = $service;
+        $this->userService = new UserService(new UserRepository());
     }
 
     public function index(): View
