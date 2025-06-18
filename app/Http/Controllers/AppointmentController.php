@@ -3,15 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAppointmentRequest;
-use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\Service;
+use App\Repositories\AppointmentRepository;
+use App\Services\AppointmentService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class AppointmentController extends Controller
 {
+    private AppointmentService $appointmentService;
+
+    public function __construct() {
+        $this->appointmentService = new AppointmentService(new AppointmentRepository());
+    }
+
     public function createForm(): View
     {
         $patients = [];
@@ -26,9 +33,7 @@ class AppointmentController extends Controller
     public function create(StoreAppointmentRequest $request)
     {
         $validated = $request->validated();
-        $appointment = new Appointment($validated);
-        $appointment->patient_id = $request->patient_id ?? Auth::id();
-        $appointment->save();
+        $this->appointmentService->create($validated);
         return redirect()->route('home')->with('success', 'Запись успешно сохранена!');
     }
 }

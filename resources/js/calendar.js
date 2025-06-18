@@ -64,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadAvailableTimes(selectedDate) {
         const doctorId = document.querySelector("input[name='doctor']:checked").value;
         const dateStr = formatDate(selectedDate);
-        console.log(dateStr)
 
         fetch(`/api/schedule/${doctorId}/getTimes/${dateStr}`)
             .then(response => response.json())

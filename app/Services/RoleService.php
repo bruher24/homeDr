@@ -4,14 +4,14 @@ namespace App\Services;
 
 use App\Models\Role;
 
-class RoleService
+final class RoleService
 {
-    public static int $admin;
-    public static int $doctor;
-    public static int $patient;
+    public int $admin;
+    public int $doctor;
+    public int $patient;
     public function __construct() {
-        self::$admin = Role::all('name')->where('name', 'admin');
-        self::$doctor = Role::all('name')->where('name', 'doctor');
-        self::$patient = Role::all('name')->where('name', 'patient');
+        $this->admin = Role::all()->where('name', 'admin')->first()->id;
+        $this->doctor = Role::all()->where('name', 'doctor')->first()->id;
+        $this->patient = Role::all()->where('name', 'patient')->first()->id;
     }
 }

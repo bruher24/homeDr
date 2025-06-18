@@ -5,17 +5,20 @@ namespace App\Services;
 use App\Exceptions\UserException;
 use App\Models\User;
 use App\Interfaces\RepositoryInterface;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserService
 {
     private RepositoryInterface $repository;
+    private RoleService $roleService;
 
     public function __construct(RepositoryInterface $repository)
     {
         $this->repository = $repository;
+        $this->roleService = new RoleService();
     }
 
-    public function collectFio(User $user): string
+    public static function collectFio(User $user): string
     {
         return $user->surname . " " . $user->name . " " . $user->patronymic;
     }
@@ -28,14 +31,19 @@ class UserService
             logger($e->getMessage());
         }
 
-        $user->roles()->attach(RoleService::$patient);
+        $user->roles()->attach($this->roleService->patient);
 
         return $user;
     }
 
     public function getUser(int $id): User
     {
-        $user = $this->repository->get($id);
+        try{
+            $user = $this->repository->get($id);
+        } catch (ModelNotFoundException $e){
+            logger($e->getMessage());
+        }
+        return $user;
     }
 
 

@@ -22,7 +22,7 @@
                     </li>
 
                     <li><a class="nav-link px-2 text-white"
-                           href="{{ route('doctor.list') }}">
+                           href="{{ route('doctors.list') }}">
                             Специалисты
                         </a>
                     </li>
@@ -47,28 +47,28 @@
                 @can('is-doctor')
                     <li>
                         <a class="nav-link px-2 text-white"
-                           href="{{ route('doctor.appointments.list', ['id' => auth()->id()]) }}">
+                           href="{{ route('doctors.appointments.list', ['id' => auth()->id()]) }}">
                             Мои приемы
                         </a>
                     </li>
 
                     <li>
                         <a class="nav-link px-2 text-white"
-                           href="{{ route('doctor.patients.list', ['id' => auth()->id()]) }}">
+                           href="{{ route('doctors.patients.list', ['id' => auth()->id()]) }}">
                             Мои пациенты
                         </a>
                     </li>
 
                     <li>
                         <a class="nav-link px-2 text-white"
-                           href="{{ route('doctor.services.list', ['id' => auth()->id()]) }}">
+                           href="{{ route('doctors.services.list', ['id' => auth()->id()]) }}">
                             Мои цены
                         </a>
                     </li>
 
                     <li>
                         <a class="nav-link px-2 text-white"
-                           href="{{ route('doctor.list') }}">
+                           href="{{ route('doctors.list') }}">
                             Коллеги
                         </a>
                     </li>
@@ -77,7 +77,7 @@
                 @can('is-patient')
                     <li>
                         <a class="nav-link px-2 text-white"
-                           href="{{ route('patients.appointments.list', ['id' => $user->id]) }}">
+                           href="{{ route('appointments.list', ['role' => $user->role, 'id' => $user->id]) }}">
                             Мои приемы
                         </a>
                     </li>
@@ -123,13 +123,13 @@
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                         <li>
                             <a class="dropdown-item"
-                               href="{{ route('user.profile', ['section' => 'personal']) }}">
+                               href="{{ route('users.profile', ['section' => 'personal']) }}">
                                 Личный кабинет
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item"
-                               href="{{ route('user.profile', ['section' => 'settings']) }}">
+                               href="{{ route('users.profile', ['section' => 'settings']) }}">
                                 Настройки
                             </a>
                         </li>
@@ -138,7 +138,7 @@
                         </li>
                         <li>
                             <a class="dropdown-item"
-                               href="{{ route('user.logout') }}">
+                               href="{{ route('users.logout') }}">
                                 Выйти
                             </a>
                         </li>

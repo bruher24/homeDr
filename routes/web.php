@@ -19,7 +19,7 @@ Route::get('about', [MainController::class, 'about'])->name('about');
 
 
 Route::middleware([CheckAuth::class])->group(function () {
-    Route::prefix('user')->name('user.')->group(function () {
+    Route::prefix('users')->name('users.')->group(function () {
         Route::post('register', [UserController::class,'register'])->name('register')->withoutMiddleware([CheckAuth ::class]);
         Route::post('auth', [UserController::class,'auth'])->name('auth')->withoutMiddleware([CheckAuth ::class]);
         Route::get('logout', [UserController::class,'logout'])->name('logout');
@@ -28,7 +28,7 @@ Route::middleware([CheckAuth::class])->group(function () {
         Route::delete('delete', [UserController::class,'delete'])->name('delete');
     });
 
-    Route::prefix('doctor')->name('doctor.')->group(function () {
+    Route::prefix('doctors')->name('doctors.')->group(function () {
         Route::get('list', [DoctorController::class,'list'])->name('list')->withoutMiddleware([CheckAuth ::class]);
         Route::get('patients/list', [DoctorController::class,'patientsList'])->name('patients.list');
         Route::get('details', [DoctorController::class,'details'])->name('details');
@@ -36,13 +36,13 @@ Route::middleware([CheckAuth::class])->group(function () {
 
     Route::prefix('patients')->name('patients.')->group(function () {
         Route::get('list', [PatientController::class,'list'])->name('list');
-        Route::get('{id}/doctors/list', [PatientController::class,'doctorsList'])->name('doctors.list');
+        Route::get('doctors/list', [PatientController::class,'doctorsList'])->name('doctors.list');
     });
 
     Route::prefix('appointments')->name('appointments.')->group(function () {
         Route::get('createForm', [AppointmentController::class,'createForm'])->name('createForm');
         Route::post('create', [AppointmentController::class,'create'])->name('create');
-        Route::get('list/{role}/{id}', [AppointmentController::class,'list'])->name('list');
+        Route::get('list', [AppointmentController::class,'list'])->name('list');
     });
 
     Route::prefix('admin')->name('admin.')->group(function () {

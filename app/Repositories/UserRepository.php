@@ -33,6 +33,7 @@ final class UserRepository implements RepositoryInterface
     {
         $user = User::with($this->relations)->find($id);
         $user->loadMissing($this->missingRelations);
+        $user->role = $user->roles()->min('id');
         return $user;
     }
 
